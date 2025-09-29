@@ -1,0 +1,9 @@
+# Maybe do this in javascript instead?
+scenarios:
+  - name: Test time tracker functionality
+    fixture: basic.yaml
+    jsFile: tests.js
+    tests:
+      - func: testTimeTracker
+      - func: testCancellation
+      - func: testSwitchingTimers

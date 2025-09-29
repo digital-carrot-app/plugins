@@ -1,0 +1,58 @@
+name: Time Tracker
+description: Manually track how long you spend on specific tasks
+imports:
+  input:
+    user_input:
+  savedTime:
+    storage:
+      allowGlobalAccess: false
+      schemaKey: currentProgress
+      resets: daily
+
+dataPlugin:
+  exports:
+    time_tracker:
+      name: Time Tracker
+      description: Manually track how long you spend on specific tasks
+      paramsSchema: setTasks
+      outputSchema: trackedActivities
+
+schemas:
+  currentProgress:
+    properties:
+      currentTask:
+        type_input: string
+      currentStart:
+        type_input: string
+      taskCount:
+        type_input: object
+        additionalProperties:
+          type_input: number
+
+  setTasks:
+    properties:
+      tasks:
+        type_input: array
+        items:
+          type_input: string
+          title: Task
+          description: Describe the task you want to do
+  trackedActivities:
+    type_input: object
+    properties:
+      time_per_task:
+        title: Time Spent Per Task
+        description: Number of minutes you spent on each individual task
+        type_input: object
+        additionalProperties:
+          type_input: number
+          metadata:
+            unit: minutes
+      total_time:
+        type_input: number
+        title: Total Minutes
+        description: Number of minutes you spent on all tasks
+      average_time:
+        type_input: number
+        title: Averge Mintues
+        description: Average number of minutes spent on tasks

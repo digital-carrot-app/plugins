@@ -1,0 +1,7 @@
+{
+  "plugins": {
+    "time_tracker": {
+      "path": "time_tracker"
+    }
+  }
+}

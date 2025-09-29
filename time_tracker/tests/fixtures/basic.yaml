@@ -1,0 +1,15 @@
+pluginConfig:
+  pluginId: time_tracker
+  config:
+    data:
+
+dataSources:
+  tracked_time:
+    pluginId: time_tracker
+    functionId: time_tracker
+    params:
+      data:
+        tasks:
+          - wash the dishes
+          - work on the new thing
+          - read a book
