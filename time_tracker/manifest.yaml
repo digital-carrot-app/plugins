@@ -16,6 +16,8 @@ dataPlugin:
       description: Manually track how long you spend on specific tasks
       paramsSchema: setTasks
       outputSchema: trackedActivities
+      type:
+        category: productivity
   quickstarts:
     single_task:
       name: Spend time on a Task
@@ -29,6 +31,7 @@ dataPlugin:
 
 schemas:
   singleTaskQuickstart:
+    type_input: object
     properties:
       name:
         type_input: string
@@ -45,6 +48,7 @@ schemas:
           displayOrder: 1
 
   currentProgress:
+    type_input: object
     properties:
       currentTask:
         type_input: string
@@ -56,6 +60,7 @@ schemas:
           type_input: number
 
   setTasks:
+    type_input: object
     properties:
       tasks:
         type_input: array
