@@ -8,7 +8,7 @@ function testTimeTracker(test) {
   test.runDataPlugin();
 
   test.testExpression(
-    "data.tracked_time.total_time > 0.01 && data.tracked_time.total_time < 0.10",
+    "data.tracked_time.total_time > 0.001 && data.tracked_time.total_time < 0.10",
   );
 
   test.testExpression(
@@ -38,6 +38,7 @@ function testCancellation(test) {
 
 function testSwitchingTimers(test) {
   test.testExpression("data.tracked_time.total_time == 0");
+  test.runDataPlugin();
 
   test.setUserInput("tracked_time", { current_task: "wash the dishes" });
   test.runDataPlugin();

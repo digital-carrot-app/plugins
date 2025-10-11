@@ -25,7 +25,7 @@ dataPlugin:
       goalDescriptionTemplate: "Spend $qs.minutes on $qs.name"
       functionParamExpr: "{tasks: [name]}"
       functionId: time_tracker
-      createUniqueDataSource: true
+      createUniqueDatasource: true
 
 schemas:
   singleTaskQuickstart:
@@ -40,7 +40,7 @@ schemas:
       minutes:
         type_input: integer
         title: Minutes
-        decription: How much time do you want to spend on this task?
+        description: How much time do you want to spend on this task?
         metadata:
           displayOrder: 1
 
