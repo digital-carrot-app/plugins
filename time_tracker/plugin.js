@@ -46,7 +46,7 @@ function time_tracker(config, params) {
 
   let schema = {
     type_input: "string",
-    enum: params.tasks,
+    enum: params.tasks.concat([""]),
     title: "Start a timer",
     description: "Select a task to start timing",
     metadata: {
