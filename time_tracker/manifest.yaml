@@ -16,8 +16,34 @@ dataPlugin:
       description: Manually track how long you spend on specific tasks
       paramsSchema: setTasks
       outputSchema: trackedActivities
+  quickstarts:
+    single_task:
+      name: Spend time on a Task
+      description: Spend a certain amount of time on a task of your chosing.
+      userInputSchema: singleTaskQuickstart
+      expressionTemplate: "$qs.time_tracker.total_time >= $qs.minutes"
+      goalDescriptionTemplate: "Spend $qs.minutes on $qs.name"
+      functionParamExpr: "{tasks: [name]}"
+      functionId: time_tracker
+      createUniqueDataSource: true
 
 schemas:
+  singleTaskQuickstart:
+    properties:
+      name:
+        type_input: string
+        title: Name
+        description: Describe the task you want to do
+        metadata:
+          displayOrder: 1
+
+      minutes:
+        type_input: integer
+        title: Minutes
+        decription: How much time do you want to spend on this task?
+        metadata:
+          displayOrder: 1
+
   currentProgress:
     properties:
       currentTask:
