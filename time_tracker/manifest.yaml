@@ -24,7 +24,7 @@ dataPlugin:
       description: Spend a certain amount of time on a task of your chosing.
       userInputSchema: singleTaskQuickstart
       expressionTemplate: "$qs.time_tracker.total_time >= $qs.minutes"
-      goalDescriptionTemplate: "Spend $qs.minutes on $qs.name"
+      goalDescriptionTemplate: "Spend $qs.minutes minutes on '$qs.name'"
       functionParamExpr: "{tasks: [name]}"
       functionId: time_tracker
       createUniqueDatasource: true
