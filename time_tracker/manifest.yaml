@@ -23,7 +23,11 @@ dataPlugin:
       name: Spend time on a Task
       description: Spend a certain amount of time on a task of your chosing.
       userInputSchema: singleTaskQuickstart
-      expressionTemplate: "$qs.time_tracker.total_time >= $qs.minutes"
+      expressionTemplate: |
+        let task = $qs.time_tracker.current_task == "" ? "" : " Current timer: " + $qs.time_tracker.current_task;
+        progressBadge($qs.time_tracker.total_time, $qs.minutes);
+        progressText("%.1f / %d.%s", $qs.time_tracker.total_time, $qs.minutes, task);
+        $qs.time_tracker.total_time >= $qs.minutes
       goalDescriptionTemplate: "Spend $qs.minutes minutes on '$qs.name'"
       functionParamExpr: "{tasks: [name]}"
       functionId: time_tracker
@@ -87,3 +91,7 @@ schemas:
         type_input: number
         title: Averge Mintues
         description: Average number of minutes spent on tasks
+      current_task:
+        type_input: string
+        title: Running Timer
+        description: The current task

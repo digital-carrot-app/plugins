@@ -109,5 +109,6 @@ function time_tracker(config, params) {
     average_time: average,
     total_time: total,
     time_per_task: currentTime.taskCount,
+    current_task: currentTime.currentTask,
   };
 }
