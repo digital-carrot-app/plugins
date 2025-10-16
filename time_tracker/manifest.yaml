@@ -17,7 +17,7 @@ dataPlugin:
       paramsSchema: setTasks
       outputSchema: trackedActivities
       type:
-        category: productivity
+        category: time_management
   quickstarts:
     single_task:
       name: Spend time on a Task
@@ -89,7 +89,7 @@ schemas:
         description: Number of minutes you spent on all tasks
       average_time:
         type_input: number
-        title: Averge Mintues
+        title: Averge Minutes
         description: Average number of minutes spent on tasks
       current_task:
         type_input: string
