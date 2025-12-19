@@ -1,1 +1,1 @@
-# Work in Progress
+# Official Digital Carrot Plugin Repository

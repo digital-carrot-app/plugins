@@ -1,0 +1,155 @@
+name: Todoist
+description: Create goals based on your Todoist tasks
+imports:
+  auth:
+    oauth:
+      clientId: 338995f0883c45b9afffcba069c8fb17
+      scopes:
+        - data:read
+      authUrl: https://todoist.com/oauth/authorize
+      tokenUrl: https://todoist.com/oauth/access_token
+      redirectPath: todoist/auth
+      clientSecret: 1589d1d55da845c09836cf4e1b7b360d
+  http:
+    httpClient:
+      baseUrl: https://todoist.com
+dataPlugin:
+  exports:
+    tasks:
+      name: Tasks
+      description: Returns a list of tasks
+      outputSchema: tasks
+      paramsSchema: tasks_filter
+      type:
+        category: productivity
+  quickstarts:
+    complete_all:
+      name: Finish Tasks
+      description: Finish all of the tasks in a list based on a Todoist filter.
+      userInputSchema: tasks_filter
+      functionId: tasks
+      functionParamExpr: "qs.cfg"
+      expressionTemplate: "$qs.data.tasks.pending_tasks_count == 0"
+      goalDescriptionExpression: >
+        let task = find(qs.schema.properties.query.metadata.uiSuggestions, #.value==qs.cfg.query)?.name ?? qs.cfg.query;
+        "Finish all your tasks. Filter: " + task
+pluginConfigSchema: pluginConfig
+schemas:
+  pluginConfig:
+    type_input: object
+    properties:
+      login:
+        allowNull: true
+        metadata:
+          oauth:
+            oauthInstance: auth
+            serviceName: Todoist
+  tasks:
+    type_input: object
+    properties:
+      all_tasks_count:
+        title: Number of Tasks
+        type_input: integer
+      finished_tasks_count:
+        title: Number of Completed Tasks
+        type_input: integer
+      pending_tasks_count:
+        title: Number of Unfinished Tasks
+        type_input: integer
+      tasks:
+        title: Tasks
+        description: A list of tasks returned by todoist
+        type_input: array
+        items:
+          type_input: object
+          properties:
+            added_at:
+              type_input: string
+              allowNull: true
+            # added_by_uid:
+            #   type_input: string
+            #   allowNull: true
+            # assigned_by_uid:
+            #   type_input: string
+            #   allowNull: true
+            checked:
+              type_input: boolean
+            # child_order:
+            #   type_input: integer
+            completed_at:
+              type_input: string
+              allowNull: true
+            # completed_by_uid:
+            #   type_input: string
+            #   allowNull: true
+            content:
+              title: Title
+              type_input: string
+              metadata: {}
+              allowNull: true
+            # day_order:
+            #   type_input: integer
+            # description:
+            #   type_input: string
+            #   allowNull: true
+            due:
+              type_input: object
+              properties:
+                date:
+                  type_input: string
+                is_recurring:
+                  type_input: boolean
+                lang:
+                  type_input: string
+                  allowNull: true
+                timezone:
+                  type_input: string
+                  allowNull: true
+              allowNull: true
+            id:
+              type_input: string
+            # is_collapsed:
+            #   type_input: boolean
+            # is_deleted:
+            #   type_input: boolean
+            labels:
+              type_input: array
+              items:
+                type_input: string
+            note_count:
+              type_input: integer
+            priority:
+              type_input: integer
+            # project_id:
+            #   type_input: string
+            # responsible_uid:
+            #   type_input: string
+            #   allowNull: true
+            # section_id:
+            #   type_input: string
+            #   allowNull: true
+            updated_at:
+              type_input: string
+              allowNull: true
+  tasks_filter:
+    type_input: object
+    properties:
+      query:
+        title: Task Filter
+        description: Enter a valid Todoist filter query
+        type_input: string
+        metadata:
+          uiSuggestions:
+            - name: All Unchecked Tasks
+              value: all
+            - name: Today
+              value: today
+            - name: Overdue
+              value: overdue
+            - name: Today or Overdue
+              value: overdue | today
+            - name: Inbox
+              value: "#Inbox"
+            - name: Priority 1
+              value: p1
+        default: all
