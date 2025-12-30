@@ -10,8 +10,26 @@ dataPlugin:
       description: Returns how long you spend in a specific location
       outputSchema: locationOut
       paramsSchema: locationCFG
+  quickstarts:
+    time_in_location:
+      name: Spent time in a Location
+      description: Spent a certain amount of time in a location based on your phone's GPS
+      userInputSchema: time_in_location_qs
+      functionId: location
+      functionParamExpr: "{location: qs.cfg.location}"
+      expressionTemplate: "$qs.data.location.time_in_location >= $qs.cfg.time_to_spend"
 
 schemas:
+  time_in_location_qs:
+    type_input: object
+    properties:
+      location:
+        metadata:
+          locationPicker:
+      time_to_spend:
+        type_input: number
+        title: Minutes to Spend
+        description: How many minutes would you like to spend in your selected location?
   locationCFG:
     type_input: object
     properties:
