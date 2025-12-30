@@ -2,6 +2,9 @@
   "plugins": {
     "todoist": {
       "path": "todoist"
+    },
+    "location": {
+      "path": "location"
     }
   }
 }

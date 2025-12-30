@@ -1,0 +1,6 @@
+# Maybe do this in javascript instead?
+scenarios:
+  - name: Test location plugin
+    jsFile: tests.js
+    tests:
+      - func: testLocationTime
