@@ -1,0 +1,34 @@
+name: Todoist
+description: Create goals based on your Todoist tasks
+imports:
+  geofence:
+    location:
+dataPlugin:
+  exports:
+    location:
+      name: Location
+      description: Returns how long you spend in a specific location
+      outputSchema: locationOut
+      paramsSchema: locationCFG
+
+schemas:
+  locationCFG:
+    type_input: object
+    properties:
+      location:
+        metadata:
+          locationPicker:
+
+  locationOut:
+    type_input: object
+    properties:
+      is_in_location:
+        type_input: boolean
+        title: Currently In Location
+        description: Returns true of the user is currently in the geofenced area.
+      time_in_location:
+        type_input: integer
+        title: Time Spent in Location
+        description: The amount of time that the user has spent in the geofenced area.
+        metadata:
+          unit: minutes
