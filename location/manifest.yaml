@@ -1,5 +1,5 @@
-name: Todoist
-description: Create goals based on your Todoist tasks
+name: Location
+description: Create goals that require you to physically be in a specific location.
 imports:
   geofence:
     location:
