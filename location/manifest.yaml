@@ -27,7 +27,7 @@ schemas:
         title: Currently In Location
         description: Returns true of the user is currently in the geofenced area.
       time_in_location:
-        type_input: integer
+        type_input: number
         title: Time Spent in Location
         description: The amount of time that the user has spent in the geofenced area.
         metadata:
