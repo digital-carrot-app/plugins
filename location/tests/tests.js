@@ -16,6 +16,9 @@ function testLocationTime(test) {
 
   test.testExpression("data.l.is_in_location == false");
   test.testExpression("data.l.time_in_location == 120");
+  test.testExpression("data.l.exit_events == 1");
+  test.testExpression("data.l.enter_events == 1");
+  test.testExpression("data.l.time_outside_location > 0");
 
   test.setLocationRecord("my_location", "enter", now - 30 * 60 * 1000);
   test.runDataPlugin();
