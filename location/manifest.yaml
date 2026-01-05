@@ -53,7 +53,7 @@ schemas:
           unit: minutes
       time_outside_location:
         type_input: number
-        title: Time Spent outisde Location
+        title: Time Spent outside Location
         description: The amount of time that the user has spent outside of the geofenced area.
         metadata:
           unit: minutes
