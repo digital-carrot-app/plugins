@@ -17,7 +17,7 @@ function location(config, params) {
     is_in_location: data.isInLocationNow,
     time_in_location: data.secondsInLocation / 60,
     time_outside_location: data.secondsOutOfLocation / 60,
-    exit_events: int(exit),
-    enter_events: int(enter),
+    exit_events: exit,
+    enter_events: enter,
   };
 }
