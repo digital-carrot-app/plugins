@@ -6,8 +6,10 @@ imports:
       clientId: 338995f0883c45b9afffcba069c8fb17
       scopes:
         - data:read
-      authUrl: https://todoist.com/oauth/authorize
-      tokenUrl: https://todoist.com/oauth/access_token
+      # I do not know why https://todoist.com stopped working. That's what
+      # they have in their documentation.
+      authUrl: https://app.todoist.com/oauth/authorize
+      tokenUrl: https://app.todoist.com/oauth/access_token
       redirectPath: todoist/auth
       clientSecret: 1589d1d55da845c09836cf4e1b7b360d
   http:
