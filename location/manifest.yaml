@@ -58,14 +58,11 @@ schemas:
         metadata:
           unit: minutes
       exit_events:
-        type_input: number
+        type_input: integer
         title: Times Exited Area
         description: The number of times the user has has left the area.
-        metadata:
-          unit: minutes
+
       enter_events:
-        type_input: number
+        type_input: integer
         title: Times Entered Area
         description: The number of times the user has has entered the area.
-        metadata:
-          unit: minutes
