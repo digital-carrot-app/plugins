@@ -1,0 +1,66 @@
+---
+name: Pi-Hole Website Blocker
+description: Block distractions for any device on your local network.
+minimum_app_version: v1.3.0
+plugin_config_schema: plugin_config
+
+imports:
+  sessionStorage:
+    storage:
+      schema_key: session_storage
+      resets: daily
+
+  phApi:
+    api_version: v1.1.0
+    http_client:
+      base_url: "{{ .UserConfig.url }}"
+
+enforcement_plugin:
+  blocked_item_schemas:
+    wildcard: wildcard_domain
+
+schemas:
+  session_storage:
+    type_input: object
+    properties:
+      sid:
+        type_input: string
+      expiration:
+        type_input: string
+      # groups:
+      #   type_input: object
+      #   additional_properties:
+      #     type_input: integer
+  wildcard_domain:
+    type_input: string
+    title: Websites
+    metadata:
+      url_field:
+  plugin_config:
+    metadata:
+      save_function: "check_connection"
+    type_input: object
+    properties:
+      url:
+        type_input: string
+        title: Pi-Hole URL
+        description: The IP address or URL where your Pi-Hole is running
+      password:
+        metadata:
+          is_secret: true
+        type_input: string
+        title: Pi-Hole password
+        description: >-
+          This can either be your admin password, or you can generate an app password
+          on the Pi-Hole dashboard.
+      untrusted_https:
+        type_input: boolean
+        default: false
+        title: Self Signed HTTPS
+        description: Enable this if you are using a self signed HTTPS certificate.
+      group_name:
+        type_input: string
+        default: digital_carrot
+        title: Group Name
+        description: >-
+          Group that Digital Carrot will add blocked domains to.
