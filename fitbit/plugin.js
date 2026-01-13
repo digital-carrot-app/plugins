@@ -1,4 +1,4 @@
-function test(config, params) {
+function activity_summary(config, params) {
   http.setOauth(auth.auth(config.login));
   const date = new Date().toISOString().split("T")[0];
   var resp = http.get(`/1/user/-/activities/date/${date}.json`);
