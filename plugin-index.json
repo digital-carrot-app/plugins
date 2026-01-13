@@ -8,6 +8,9 @@
     },
     "pihole": {
       "path": "pihole"
+    },
+    "fitbit": {
+      "path": "fitbit"
     }
   }
 }

@@ -1,0 +1,105 @@
+name: Fitbit
+description: Create fitness goals from your fitbit data
+imports:
+  auth:
+    oauth:
+      clientId: 23TW6D
+      scopes:
+        - activity
+      authUrl: https://www.fitbit.com/oauth2/authorize
+      tokenUrl: https://api.fitbit.com/oauth2/token
+
+  http:
+    httpClient:
+      baseUrl: https://api.fitbit.com
+dataPlugin:
+  exports:
+    activity_summary:
+      name: Fitbit Activities
+      description: Fitbit Activities for Today
+      outputSchema: activity_summary
+      type:
+        category: health
+  quickstarts:
+    steps:
+      name: Steps
+      description: Walk a certain number of steps every day.
+      function_id: activity_summary
+      user_input_schema: steps_qs
+      goal_description_template: "Walk $qs.cfg.steps steps"
+      expression_template: "$qs.data.activity_summary.steps >= $qs.cfg.steps"
+    active_calories:
+      name: Active Calories
+      description: Burn a certain number of calories from light physical activity every day.
+      function_id: activity_summary
+      user_input_schema: calories_qs
+      goal_description_template: "Burn $qs.cfg.calories calories"
+      expression_template: "$qs.data.activity_summary.active_calories >= $qs.cfg.calories"
+
+pluginConfigSchema: pluginConfig
+schemas:
+  calories_qs:
+    type_input: object
+    properties:
+      calories:
+        metadata:
+          unit: calories
+        type_input: number
+        title: Calories Burned Goal
+        description: Number of calories you'd like to burn
+        default: 300
+  steps_qs:
+    type_input: object
+    properties:
+      steps:
+        metadata:
+          custom_unit: steps
+        type_input: integer
+        title: Step Goal
+        description: Number of steps you'd like to walk
+        default: 2000
+  pluginConfig:
+    type_input: object
+    properties:
+      login:
+        allowNull: true
+        metadata:
+          oauth:
+            oauthInstance: auth
+            serviceName: Fitbit
+  activity_summary:
+    type_input: object
+    properties:
+      active_calories:
+        metadata:
+          unit: calories
+        type_input: number
+        title: Active Calories
+        description: >-
+          The number of calories burned for the day during periods the
+          user was active above sedentary level. This includes both
+          activity burned calories and BMR.
+      steps:
+        metadata:
+          custom_unit: steps
+        type_input: number
+        title: Steps
+        description: Total steps taken for the day.
+      lightly_active_minutes:
+        metadata:
+          unit: minutes
+        type_input: number
+        title: Lightly Active Minutes
+        description: Total minutes the user was lightly active.
+      fairly_active_minutes:
+        metadata:
+          unit: minutes
+        type_input: number
+        title: Fairly Active Minutes
+        description: Total minutes the user was fairly/moderately active.
+      very_active_minutes:
+        metadata:
+          unit: minutes
+        type_input: number
+        title: Very Active Minutes
+        description: Total minutes the user was very active.

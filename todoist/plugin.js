@@ -1,33 +1,3 @@
-/**
- * @typedef {Object} HttpModule
- * @property {function(string, Object=): HttpResponse} get - GET request
- * @property {function(string, Object, Object=): HttpModule} post - POST request
- * @property {function(string, Object, Object=): Promise<HttpResponse>} put - PUT request
- * @property {function(string, Object=): Promise<HttpResponse>} delete - DELETE request
- */
-
-/**
- * @typedef {Object} HttpResponse
- * @property {number} status
- * @property {Object} data
- * @property {Object} headers
- */
-
-/**
- * User represents a user in the system
- * @typedef {Object} User
- * @property {number} id - ID is the unique identifier
- * @property {string} name - Name is the user's full name
- * @property {string} email - Email is the user's email address
- * @property {boolean} isActive - IsActive indicates if the user is active
- * @property {Array<string>} tags - Tags are user tags
- * @property {function(): User} getFullName - GetFullName returns the user's full name
- * @property {function(newEmail): Error} updateEmail - UpdateEmail updates the user's email address
- * @property {function(tags): void} addTags - AddTags adds multiple tags to the user
- * @property {function(): [number, string]} getInfo - GetInfo returns user ID and name
- * @property {function(): [boolean, Error]} validate - Validate checks if the user data is valid
- */
-
 function tasks(config, params) {
   http.setOauth(auth.auth(config.login));
   var url = "/api/v1/tasks/filter?query=";
