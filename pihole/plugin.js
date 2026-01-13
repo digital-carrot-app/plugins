@@ -69,6 +69,11 @@ function checkGroup(authedClient, pluginConfig) {
         comment: COMMENT,
       },
     });
+    if (res.statusCode != 201) {
+      throw (
+        "Could not create digital carrot group: " + res.body.json.error.message
+      );
+    }
     groupId = res.body.json.groups[0].id;
   }
   return groupId;
@@ -87,6 +92,9 @@ function checkBlocked(authedClient, blockConfig, groupId) {
   }
 
   var current = authedClient.get("api/domains/");
+  if (current.statusCode != 200) {
+    throw "Could not get list of domains: " + current.body.json.error.message;
+  }
 
   // go through all the configured domains
   //
@@ -109,7 +117,7 @@ function checkBlocked(authedClient, blockConfig, groupId) {
         d.groups.push(groupId);
         d.groups = Array.from(new Set(d.groups));
         d.comment = COMMENT;
-        var resp = authedClient.put("/api/domains/deny/regex/" + d.domain, {
+        authedClient.put("/api/domains/deny/regex/" + d.domain, {
           json: d,
         });
       }
@@ -144,6 +152,9 @@ function authenticate(pluginConfig) {
     var auth = phApi.post("/api/auth/", {
       json: { password: pluginConfig.password },
     });
+    if (auth.statusCode != 200) {
+      throw "Could not authenticate: " + auth.body.json.error.message;
+    }
     sessionId = auth.body.json.session.sid;
     sessionCache = {
       sid: sessionId,
