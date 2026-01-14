@@ -1,6 +1,14 @@
+function getLocalDateString() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const dd = String(today.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
+
 function activity_summary(config, params) {
   http.setOauth(auth.auth(config.login));
-  const date = new Date().toISOString().split("T")[0];
+  const date = getLocalDateString();
   var resp = http.get(`/1/user/-/activities/date/${date}.json`);
 
   if (resp.statusCode != 200) {
