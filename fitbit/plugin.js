@@ -18,7 +18,7 @@ function activity_summary(config, params) {
   }
   if (resp.statusCode != 200) {
     console.log(resp.body.string);
-    throw "Failed to retrieve data from fitbit.";
+    throw "The fitbit API appears to be down. Please check back in later.";
   }
 
   const out = resp.body.json;
