@@ -7,21 +7,25 @@ function getLocalDateString() {
 }
 
 function activity_summary(config, params) {
-  http.setOauth(auth.auth(config.login));
-  const date = getLocalDateString();
-  var resp = http.get(`/1/user/-/activities/date/${date}.json`);
+  try {
+    http.setOauth(auth.auth(config.login));
+    const date = getLocalDateString();
+    var resp = http.get(`/1/user/-/activities/date/${date}.json`);
 
-  if (resp.statusCode != 200) {
-    throw "Failed to retrieve data from fitbit.";
+    if (resp.statusCode != 200) {
+      throw "Failed to retrieve data from fitbit.";
+    }
+
+    const out = resp.body.json;
+
+    return {
+      active_calories: out.summary.activityCalories,
+      steps: out.summary.steps,
+      lightly_active_minutes: out.summary.lightlyActiveMinutes,
+      fairly_active_minutes: out.summary.fairlyActiveMinutes,
+      very_active_minutes: out.summary.veryActiveMinutes,
+    };
+  } catch (e) {
+    throw "Authentication failed. Please login again by going to Settings > Plugins > Fitbit";
   }
-
-  const out = resp.body.json;
-
-  return {
-    active_calories: out.summary.activityCalories,
-    steps: out.summary.steps,
-    lightly_active_minutes: out.summary.lightlyActiveMinutes,
-    fairly_active_minutes: out.summary.fairlyActiveMinutes,
-    very_active_minutes: out.summary.veryActiveMinutes,
-  };
 }
