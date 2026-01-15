@@ -1,5 +1,6 @@
 name: Fitbit
 description: Create fitness goals from your fitbit data
+minimum_app_version: v1.3.0
 imports:
   auth:
     oauth:
@@ -8,6 +9,10 @@ imports:
         - activity
       authUrl: https://www.fitbit.com/oauth2/authorize
       tokenUrl: https://api.fitbit.com/oauth2/token
+  token_store:
+    storage:
+      schema_key: token_storage
+      resets: never
 
   http:
     httpClient:
@@ -38,6 +43,18 @@ dataPlugin:
 
 pluginConfigSchema: pluginConfig
 schemas:
+  token_storage:
+    type_input: object
+    properties:
+      # We need to know if the user re authenticates.
+      original_refresh:
+        type_input: string
+      access_token:
+        type_input: string
+      refresh_token:
+        type_input: string
+      expiration:
+        type_input: string
   calories_qs:
     type_input: object
     properties:
