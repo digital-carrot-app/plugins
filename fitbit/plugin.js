@@ -30,13 +30,18 @@ function activity_summary(config, params) {
 
   if (isValid.body.json.success === false) {
     try {
-      authorized = http.withOptions({
+      var withUrlEncoded = http.withOptions({
         headers: { "Content-Type": ["application/x-www-form-urlencoded"] },
       });
-      var newCreds = authorized.post("/oauth2/token", {
+
+      var newCreds = withUrlEncoded.post("/oauth2/token", {
         string: `client_id=23TW6D&grant_type=refresh_token&refresh_token=${tokens.refresh_token}`,
       });
-      console.log(newCreds.body.string);
+      if (newCreds.statusCode == 400) {
+        console.log(newCreds.body.string);
+        throw "Please login again by going to Settings > Plugins > Fitbit";
+      }
+
       tokens.access_token = newCreds.body.json.access_token;
       tokens.refresh_token = newCreds.body.json.refresh_token;
       token_store.save(tokens);
@@ -45,6 +50,7 @@ function activity_summary(config, params) {
         headers: { authorization: ["Bearer " + tokens.access_token] },
       });
     } catch (e) {
+      console.log(e);
       throw "Please login again by going to Settings > Plugins > Fitbit";
     }
   }
