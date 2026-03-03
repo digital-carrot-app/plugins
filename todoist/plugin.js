@@ -2,9 +2,11 @@ function tasks(config, params) {
   http.setOauth(auth.auth(config.login));
   var url = "/api/v1/tasks/filter?query=";
   if (params.query != "" && params.query != undefined) {
-    // go can't handle # in query params, so we need to replace
+    // go can't handle # (and maybe &) in query params, so we need to replace
     // it with the approriate code.
-    url = url + params.query.replaceAll("#", "%23");
+    var q = params.query.replaceAll("#", "%23");
+    q = params.query.replaceAll("&", "%26");
+    url = url + q;
   } else {
     url = url + "all";
   }
