@@ -35,7 +35,56 @@ dataPlugin:
       goalDescriptionExpression: >
         let task = find(qs.schema.properties.query.metadata.uiSuggestions, #.value==qs.cfg.query)?.name ?? qs.cfg.query;
         "Finish all your tasks. Filter: " + task
+      condition_widgets:
+        overview:
+          task_list:
+            id: task_list
 pluginConfigSchema: pluginConfig
+premade_widgets:
+  task_list:
+    context_type:
+      data_source_context:
+        function_id: tasks
+    const:
+      data_card:
+        title: Due Tasks
+        child:
+          dynamic_values: |
+            {"router.selected": len(data[ctx.dataSource.dataSourceId].tasks) == 0 ? "empty" : "list"}
+
+          router:
+            routes:
+              empty:
+                row:
+                  spacing: 10
+                  children:
+                    - icon:
+                        material: check
+                    - text:
+                        value: All done!
+                        is_expanded: true
+              list:
+                dynamic_values: |
+                  let items = data[ctx.dataSource.dataSourceId].tasks;
+                  {
+                    "column.children": map(items, {{
+                      row: {
+                        spacing: 10,
+                        children: [
+                          {
+                            icon: {material: "block"}
+                          },
+                          {
+                            text: {display: .content},
+                            isExpanded: true
+                          },
+                        ],
+                      },
+                    }})
+                  }
+                column:
+                  children: []
+
 schemas:
   pluginConfig:
     type_input: object
