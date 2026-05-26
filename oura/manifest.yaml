@@ -1,5 +1,5 @@
-name: Oura
-description: Create fitness goals from your Oura data
+name: Oura (EXPERIMENTAL)
+description: "NOTE: THIS PLUGIN IS STILL UNDER DEVELOPMENT. Create fitness goals from your Oura data"
 minimum_app_version: v1.5.0
 imports:
   auth:
