@@ -64,11 +64,13 @@ schemas:
         title: Steps
         description: Total steps taken for the day.
       active_calories:
+        type_input: number
         metadata:
           unit: calories
         title: Active Calories
         description: Active calories expended
       distance:
+        type_input: number
         metadata:
           unit: meters
         title: Distance
