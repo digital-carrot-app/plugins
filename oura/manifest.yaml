@@ -1,0 +1,75 @@
+name: Oura
+description: Create fitness goals from your Oura data
+minimum_app_version: v1.5.0
+imports:
+  auth:
+    oauth:
+      clientId: 53791ea4-2fe3-4b8e-99ce-c633bf72270c
+      clientSecret: 86qzEruyh-mApcszDjdDMrn-aWmZHfEhDNc5vJf21dI
+      scopes:
+        - daily
+      authUrl: https://cloud.ouraring.com/oauth/authorize
+      tokenUrl: https://api.ouraring.com/oauth/token
+  http:
+    httpClient:
+      baseUrl: https://api.ouraring.com/
+dataPlugin:
+  exports:
+    activity_summary:
+      name: Oura Activities
+      description: Oura Activities for Today
+      outputSchema: activity_summary
+      type:
+        category: health
+  quickstarts:
+    steps:
+      name: Steps
+      description: Walk a certain number of steps every day.
+      function_id: activity_summary
+      user_input_schema: steps_qs
+      goal_description_template: "Walk $qs.cfg.steps steps"
+      expression_template: |
+        progressText("DEBUG: steps: %.1f, calories: %.1f, distance: %.1f", $qs.data.activity_summary.steps, $qs.data.activity_summary.active_calories, $qs.data.activity_summary.distance);
+        progressBadge($qs.data.activity_summary.steps, $qs.cfg.steps);
+        $qs.data.activity_summary.steps >= $qs.cfg.steps
+
+pluginConfigSchema: pluginConfig
+schemas:
+  steps_qs:
+    type_input: object
+    properties:
+      steps:
+        metadata:
+          custom_unit: steps
+        type_input: integer
+        title: Step Goal
+        description: Number of steps you'd like to walk
+        default: 2000
+  pluginConfig:
+    type_input: object
+    properties:
+      login:
+        allowNull: true
+        metadata:
+          oauth:
+            oauthInstance: auth
+            serviceName: Oura
+  activity_summary:
+    type_input: object
+    properties:
+      steps:
+        metadata:
+          custom_unit: steps
+        type_input: number
+        title: Steps
+        description: Total steps taken for the day.
+      active_calories:
+        metadata:
+          unit: calories
+        title: Active Calories
+        description: Active calories expended
+      distance:
+        metadata:
+          unit: meters
+        title: Distance
+        description: Distance traveled by foot (walking or running)

@@ -11,6 +11,9 @@
     },
     "fitbit": {
       "path": "fitbit"
+    },
+    "oura": {
+      "path": "oura"
     }
   }
 }
