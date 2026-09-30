@@ -7,6 +7,7 @@ function getLocalDateString() {
 }
 
 function activity_summary(config, params) {
+  throw "Fitbit is no longer supported. For information on migrating visit digitalcarrot.app/blog";
   var tokens = token_store.get();
   if (tokens.original_refresh !== config.login.refresh_token) {
     tokens = {

@@ -1,6 +1,9 @@
 name: Fitbit
 description: Create fitness goals from your fitbit data
 minimum_app_version: v1.3.0
+isDeprecated:
+  notice: Google has dropped support for the Fitbit APIs. You can connect the new Google Health app to Apple or Google Health Connect.
+  moreInfoUrl: https://www.digitalcarrot.app/blog/0007_fitbit_deprecation/
 imports:
   auth:
     oauth:
