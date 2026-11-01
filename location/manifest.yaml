@@ -37,9 +37,9 @@ dataPlugin:
         let loc = $qs.data.location;
 
         if loc.is_in_location {
-          # Returning a time will be interpreted as the rule being active.
-          # For unblock rules this will cause the block list to be unblocked
-          # until the returned time.
+          // Returning a time will be interpreted as the rule being active.
+          // For unblock rules this will cause the block list to be unblocked
+          // until the returned time.
           now() + duration("15m")
         } else {
           false
