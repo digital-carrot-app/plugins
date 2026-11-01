@@ -22,24 +22,35 @@ dataPlugin:
       functionParamExpr: "{location: qs.cfg.location}"
       expressionTemplate: "$qs.data.location.time_in_location >= $qs.cfg.time_to_spend"
     block_in_location:
-      name: Location Block
-      description: Block or unblock distractions when you're in a specific location
-      userInputSchema: time_in_location_qs
+      name: Block in Location
+      description: Block distractions when you're in a specific location
+      userInputSchema: locationCFG
       functionId: location
       functionParamExpr: "{location: qs.cfg.location}"
       type: block
       blockRuleOptions:
-        unblockText: Unblock distractions in specific locations
-        unblockDescription: Unblock distractions when you're physically in a specific location
+        hideNeverBlock: true
         blockText: Block distractions in specific locations
         blockDescription: Block distractions when you're physically in a specific location
       expressionTemplate: |
-        let loc = $qs.data.location;
-
-        if loc.is_in_location {
-          // Returning a time will be interpreted as the rule being active.
-          // For unblock rules this will cause the block list to be unblocked
-          // until the returned time.
+        if $qs.data.location.is_in_location {
+          now() + duration("6h")
+        } else {
+          false
+        }
+    unblock_in_location:
+      name: Unblock in Location
+      description: Unblock distractions when you're in a specific location
+      userInputSchema: locationCFG
+      functionId: location
+      functionParamExpr: "{location: qs.cfg.location}"
+      type: block
+      blockRuleOptions:
+        hideAlwaysBlock: true
+        unblockText: Unblock distractions in specific locations
+        unblockDescription: Unblock distractions when you're physically in a specific location
+      expressionTemplate: |
+        if $qs.data.location.is_in_location {
           now() + duration("15m")
         } else {
           false
