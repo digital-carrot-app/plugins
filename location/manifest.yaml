@@ -30,8 +30,8 @@ dataPlugin:
       type: block
       blockRuleOptions:
         hideNeverBlock: true
-        blockText: Block distractions in specific locations
-        blockDescription: Block distractions when you're physically in a specific location
+        blockText: Block in Location
+        blockDescription: Block distractions when you're in a specific location
       expressionTemplate: |
         if $qs.data.location.is_in_location {
           // This will block for 12 hours unless the GPS refreshes to show that
@@ -49,10 +49,48 @@ dataPlugin:
       type: block
       blockRuleOptions:
         hideAlwaysBlock: true
-        unblockText: Unblock distractions in specific locations
-        unblockDescription: Unblock distractions when you're physically in a specific location
+        unblockText: Unblock in Location
+        unblockDescription: Unblock distractions when you're in a specific location
       expressionTemplate: |
         if $qs.data.location.is_in_location {
+          // This will unblock for 15 minutes, which means that your GPS needs to check in
+          // every 15 minutes to ensure that you're still allowed to unblock.
+          now() + duration("15m")
+        } else {
+          false
+        }
+    block_outside_location:
+      name: Block outside Location
+      description: Block distractions when you're outside of a specific location
+      userInputSchema: locationCFG
+      functionId: location
+      functionParamExpr: "{location: qs.cfg.location}"
+      type: block
+      blockRuleOptions:
+        hideNeverBlock: true
+        blockText: Block outside Location
+        blockDescription: Block distractions when you're outside of a specific location
+      expressionTemplate: |
+        if !$qs.data.location.is_in_location {
+          // This will block for 12 hours unless the GPS refreshes to show that
+          // you're in a new location
+          now() + duration("12h")
+        } else {
+          false
+        }
+    unblock_outside_location:
+      name: Unblock outside Location
+      description: Unblock distractions when you're outside of a specific location
+      userInputSchema: locationCFG
+      functionId: location
+      functionParamExpr: "{location: qs.cfg.location}"
+      type: block
+      blockRuleOptions:
+        hideAlwaysBlock: true
+        unblockText: Unblock outside Location
+        unblockDescription: Unblock distractions when you're outside of a specific location
+      expressionTemplate: |
+        if !$qs.data.location.is_in_location {
           // This will unblock for 15 minutes, which means that your GPS needs to check in
           // every 15 minutes to ensure that you're still allowed to unblock.
           now() + duration("15m")
