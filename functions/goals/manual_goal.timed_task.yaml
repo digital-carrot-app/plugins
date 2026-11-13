@@ -6,7 +6,7 @@ expression: |2-
   );
   progressText(task);
   data.time_tracker.total_time >= self.cfg.minutes
-  							
+
 paramSchema:
   type_input: object
   properties:
@@ -37,34 +37,13 @@ requiredData:
         createUnique: true
         dataSourceName: Timed Daily Task
 instanceNameTemplate: Spend ${self.cfg.minutes} minutes on '${self.cfg.name}'
-conditionWidgets:
-  leftBox:
-    id: timer
-    plugin: manual_goal
-    function: |2-
-      										{
-      											current_task: data.time_tracker?.current_task ?? "",
-      											last_started: data.time_tracker?.last_started ?? "",
-      											target_minutes: self.cfg.minutes,
-      											total_time: data.time_tracker?.total_time ?? 0,
-      										}
-      										
-  rightBox:
-    id: timer_toggle
-    plugin: manual_goal
-    function: |2-
-      										{
-      											data_source_id: self.instance.linkedData["time_tracker"].dataSourceId,
-      											toggle_task_name: self.cfg.name,
-      											current_task: data.time_tracker?.current_task ?? "",
-      											target_minutes: self.cfg.minutes,
-      										}
-      										
 shortDescription: A daily task that requires you to spend a certain amount of time on it.
 boundPlugin: manual_goal
 uiConfig:
   defaultIcon:
     materialIcon: timelapse
+  defaultColor:
+    color: blue
   overviewWidgets:
     toggle:
       id: timer_toggle
@@ -75,7 +54,7 @@ uiConfig:
         												toggle_task_name: self.cfg.name,
         												current_task: data.time_tracker?.current_task ?? "",
         											}
-        											
+
   controlWidget:
     id: timer_toggle
     plugin: manual_goal
@@ -85,7 +64,7 @@ uiConfig:
       											toggle_task_name: self.cfg.name,
       											current_task: data.time_tracker?.current_task ?? "",
       										}
-      										
+
 quickstartMigration:
   pluginId: manual_goal
   qsId: timed_task
@@ -97,5 +76,5 @@ quickstartMigration:
     );
     progressText(task);
     $qs.data.time_tracker.total_time >= $qs.cfg.minutes
-    							
+
 goal: {}

@@ -41,3 +41,8 @@ rule:
   legacyUnblockDescriptionTemplate: ""
   allowedActions:
     - block_blocklist
+uiConfig:
+  defaultIcon:
+    materialIcon: location_off
+  defaultColor:
+    color: magenta

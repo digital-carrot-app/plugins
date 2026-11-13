@@ -102,6 +102,8 @@ boundPlugin: schedule_breaks
 uiConfig:
   defaultIcon:
     materialIcon: calendar_month
+  defaultColor:
+    color: gold
 quickstartMigration:
   pluginId: schedule_breaks
   qsId: single_schedule

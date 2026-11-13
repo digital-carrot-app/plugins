@@ -25,3 +25,8 @@ quickstartMigration:
   qsId: time_in_location
   expressionTemplate: $qs.data.location.time_in_location >= $qs.cfg.time_to_spend
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: location_on
+  defaultColor:
+    color: teal

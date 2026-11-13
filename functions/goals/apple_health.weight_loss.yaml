@@ -10,7 +10,7 @@ expression: |2-
   progressText("Daily goal: %.1f, Current weight: %.1f, Rate: %.1f per week", target, data.body.weight, perDay * 7);
 
   data.body.weight <= target;
-  							
+
 paramSchema:
   type_input: object
   properties:
@@ -70,5 +70,10 @@ quickstartMigration:
     progressText("Daily goal: %.1f, Current weight: %.1f, Rate: %.1f per week", target, $qs.data.body.weight, perDay * 7);
 
     $qs.data.body.weight <= target;
-    							
+
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: monitor_weight_loss
+  defaultColor:
+    color: indigo

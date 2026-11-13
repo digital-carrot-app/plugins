@@ -25,3 +25,9 @@ quickstartMigration:
   qsId: mindful_minutes
   expressionTemplate: $qs.data.mind.mindfulness >= $qs.cfg.minutes
 goal: {}
+isDeprecated: true
+uiConfig:
+  defaultIcon:
+    materialIcon: self_improvement
+  defaultColor:
+    color: violet

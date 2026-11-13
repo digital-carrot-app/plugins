@@ -27,3 +27,8 @@ quickstartMigration:
   qsId: activity_minutes
   expressionTemplate: $qs.data.movement.exercise_minutes >= $qs.cfg.minutes
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: timer
+  defaultColor:
+    color: green

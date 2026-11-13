@@ -31,3 +31,8 @@ quickstartMigration:
     progressBadge($qs.data.activity_summary.steps, $qs.cfg.steps);
     $qs.data.activity_summary.steps >= $qs.cfg.steps
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: steps
+  defaultColor:
+    color: green

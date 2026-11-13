@@ -40,3 +40,8 @@ quickstartMigration:
   qsId: complete_all
   expressionTemplate: $qs.data.tasks.pending_tasks_count == 0
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: checklist
+  defaultColor:
+    color: indigo

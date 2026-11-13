@@ -25,3 +25,4 @@ quickstartMigration:
   qsId: active_calories
   expressionTemplate: $qs.data.activity_summary.active_calories >= $qs.cfg.calories
 goal: {}
+isDeprecated: true

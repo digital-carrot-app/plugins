@@ -82,3 +82,8 @@ quickstartMigration:
   qsId: workout
   expressionTemplate: $qs.data.workout.calories >= $qs.cfg.calories
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: fitness_center
+  defaultColor:
+    color: gold

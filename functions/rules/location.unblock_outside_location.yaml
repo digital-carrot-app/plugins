@@ -41,3 +41,8 @@ rule:
   legacyUnblockDescriptionTemplate: Unblock distractions when you're outside of a specific location
   allowedActions:
     - unblock_blocklist
+uiConfig:
+  defaultIcon:
+    materialIcon: location_on
+  defaultColor:
+    color: magenta

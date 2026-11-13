@@ -25,3 +25,4 @@ quickstartMigration:
   qsId: steps
   expressionTemplate: $qs.data.activity_summary.steps >= $qs.cfg.steps
 goal: {}
+isDeprecated: true

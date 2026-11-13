@@ -18,12 +18,15 @@ conditionWidgets:
       											show_title: false,
       											is_completed: data.single_task.completed,
       										}
-      										
+
 shortDescription: A single task that you have to manually check off every day.
 boundPlugin: manual_goal
 uiConfig:
   defaultIcon:
     materialIcon: task_alt
+  defaultColor:
+    color: indigo
+
 quickstartMigration:
   pluginId: manual_goal
   qsId: manual_goal

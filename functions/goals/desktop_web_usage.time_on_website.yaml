@@ -27,6 +27,8 @@ boundPlugin: desktop_web_usage
 uiConfig:
   defaultIcon:
     materialIcon: timer
+  defaultColor:
+    color: blue
 quickstartMigration:
   pluginId: desktop_web_usage
   qsId: time_on_website

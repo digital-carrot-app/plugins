@@ -23,3 +23,8 @@ quickstartMigration:
   qsId: climb_stairs
   expressionTemplate: $qs.data.movement.stairs >= $qs.cfg.stairs
 goal: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: floor
+  defaultColor:
+    color: green
