@@ -13,6 +13,8 @@ paramSchema:
       metadata:
         locationPicker: {}
 name: Block outside Location
+instanceNameTemplate: "while outside location: ${ctx.appConfig.locations[self.cfg.location].name}"
+
 requiredData:
   location:
     dataSources:

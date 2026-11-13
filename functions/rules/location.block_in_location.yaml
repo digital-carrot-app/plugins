@@ -13,6 +13,7 @@ paramSchema:
       metadata:
         locationPicker: {}
 name: Block in Location
+instanceNameTemplate: "while in location: ${ctx.appConfig.locations[self.cfg.location].name}"
 requiredData:
   location:
     dataSources:

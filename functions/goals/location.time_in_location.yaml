@@ -10,6 +10,7 @@ paramSchema:
       description: How many minutes would you like to spend in your selected location?
       type_input: number
 name: Spent time in a Location
+instanceNameTemplate: "Spend ${self.cfg.time_to_spend} minutes in location: ${ctx.appConfig.locations[self.cfg.location].name}"
 requiredData:
   location:
     dataSources:
