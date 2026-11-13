@@ -22,8 +22,18 @@ paramSchema:
       type_input: integer
       metadata:
         unit: minutes
+    select_var:
+      metadata:
+        variable_picker:
+          required_data_id:
 name: Timed Unblock
 requiredData:
+  earn_minutes:
+    name: earn minutes
+    is_optional: true
+    expected_output_schema:
+      type_input: number
+    allow_custom_variable:
   time_tracker:
     dataSources:
       default:
