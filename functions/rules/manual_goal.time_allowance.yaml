@@ -25,7 +25,7 @@ paramSchema:
     select_var:
       metadata:
         variable_picker:
-          required_data_id:
+          required_data_id: earn_minutes
 name: Timed Unblock
 requiredData:
   earn_minutes:
