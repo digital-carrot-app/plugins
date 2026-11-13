@@ -55,8 +55,15 @@ schemas:
         type_input: integer
         title: Times Exited Area
         description: The number of times the user has has left the area.
-
       enter_events:
         type_input: integer
         title: Times Entered Area
         description: The number of times the user has has entered the area.
+      last_enter_time:
+        type_input: string
+        title: Last Entered Time
+        description: Timestamp when the user last entered the location.
+      last_exit_time:
+        type_input: string
+        title: Last Exited Time
+        description: Timestamp when the user last exited the location.

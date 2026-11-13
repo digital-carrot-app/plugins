@@ -1,4 +1,9 @@
-expression: data.location.time_in_location >= self.cfg.time_to_spend
+expression: |
+  progressBadge(
+    data.location.time_in_location, self.cfg.time_to_spend,
+    {startTime: data.location.last_enter_time, secondsPerUpdate: 60, unit: "minutes"}
+  );
+  data.location.time_in_location >= self.cfg.time_to_spend
 paramSchema:
   type_input: object
   properties:

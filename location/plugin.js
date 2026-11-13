@@ -3,13 +3,17 @@ function location(config, params) {
 
   var enter = 0;
   var exit = 0;
+  var lastEnter = "";
+  var lastExit = "";
 
   for (const e of data.records) {
     if (e.type == "exit") {
       exit++;
+      lastExit = e.time;
     }
     if (e.type == "enter") {
       enter++;
+      lastEnter = e.time;
     }
   }
 
@@ -19,5 +23,7 @@ function location(config, params) {
     time_outside_location: data.secondsOutOfLocation / 60,
     exit_events: exit,
     enter_events: enter,
+    last_exit_time: lastExit,
+    last_enter_time: lastEnter,
   };
 }
