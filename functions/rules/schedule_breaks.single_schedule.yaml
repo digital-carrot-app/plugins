@@ -118,10 +118,6 @@ quickstartMigration:
     									$qs.data.single_schedule.currentEndsAt == "" ? false : $qs.data.single_schedule.currentEndsAt
     								}
 rule:
-  legacyBlockTitleTemplate: Stay blocked during set hours
-  legacyBlockDescriptionTemplate: Schedule times during the week when your distractions are automatically blocked.
-  legacyUnblockTitleTemplate: Unblock during scheduled times
-  legacyUnblockDescriptionTemplate: Schedule times during the week when your distractions automatically unblock.
   allowedActions:
     - block_blocklist
     - unblock_blocklist

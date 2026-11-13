@@ -32,7 +32,7 @@ requiredData:
         functionParamExpr: '{tasks: ["Unblock distractions"], max_per_timer: self.cfg.minutes}'
         createUnique: true
         dataSourceName: Timed Unblock
-instanceNameTemplate: Allowed to unblock for ${self.cfg.minutes} minutes per day.
+instanceNameTemplate: ${self.cfg.minutes} of access minutes per day
 conditionWidgets:
   leftBox:
     id: timer
@@ -102,9 +102,5 @@ quickstartMigration:
     	false
     }
 rule:
-  legacyBlockTitleTemplate: ""
-  legacyBlockDescriptionTemplate: ""
-  legacyUnblockTitleTemplate: Unblock for a limited time each day
-  legacyUnblockDescriptionTemplate: Allow yourself to unblock all of your distractions for a set number of minutes each day.
   allowedActions:
     - unblock_blocklist

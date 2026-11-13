@@ -36,10 +36,6 @@ quickstartMigration:
       false
     }
 rule:
-  legacyBlockTitleTemplate: ""
-  legacyBlockDescriptionTemplate: ""
-  legacyUnblockTitleTemplate: Unblock outside Location
-  legacyUnblockDescriptionTemplate: Unblock distractions when you're outside of a specific location
   allowedActions:
     - unblock_blocklist
 uiConfig:
