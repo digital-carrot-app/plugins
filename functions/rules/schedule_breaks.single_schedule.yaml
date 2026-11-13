@@ -1,0 +1,112 @@
+expression: |2-
+  								if data.single_schedule.version == 1 {
+  									{
+  										"is_active": data.single_schedule.inSchedule,
+  										"activate_at": data.single_schedule.currentStartsAt,
+  										"deactivate_at": data.single_schedule.currentEndsAt,
+  									}
+  								} else {
+  									data.single_schedule.currentEndsAt == "" ? false : data.single_schedule.currentEndsAt
+  								}
+paramSchema:
+  title: Schedule
+  type_input: object
+  properties:
+    dayOfWeek:
+      title: Week days
+      description: Select the days of the week that you would like to apply this schedule to
+      type_input: array
+      items:
+        type_input: integer
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+      metadata:
+        uiSuggestions:
+          - name: Sunday
+            value: 0
+          - name: Monday
+            value: 1
+          - name: Tuesday
+            value: 2
+          - name: Wednesday
+            value: 3
+          - name: Thursday
+            value: 4
+          - name: Friday
+            value: 5
+          - name: Saturday
+            value: 6
+        multipleSelection:
+          itemType: integer
+        displayOrder: 1
+      minItems: 1
+    endTime:
+      title: End Time
+      description: Time of day when the schedule will end
+      type_input: object
+      properties:
+        hour:
+          type_input: integer
+        minute:
+          type_input: integer
+      required:
+        - hour
+        - minute
+      metadata:
+        timePicker: {}
+        displayOrder: 3
+    startTime:
+      title: Start Time
+      description: Time of day when the schedule will start
+      type_input: object
+      properties:
+        hour:
+          type_input: integer
+        minute:
+          type_input: integer
+      required:
+        - hour
+        - minute
+      metadata:
+        timePicker: {}
+        displayOrder: 2
+  required:
+    - dayOfWeek
+    - startTime
+    - endTime
+name: Weekly Schedule
+requiredData:
+  single_schedule:
+    dataSources:
+      default:
+        pluginId: schedule_breaks
+        functionId: single_schedule
+        functionParamExpr: '{dayOfWeek: self.cfg.dayOfWeek, startTime: self.cfg.startTime, endTime: self.cfg.endTime}'
+        dataSourceName: Weekly Schedule
+instanceNameTemplate: |-
+  ${
+  let weekdays = {"0": "sun", "1": "mon", "2": "tue", "3":"wed", "4":"thu", "5":"fri", "6":"sat"};
+
+  let end = date(string(self.cfg.endTime.hour) + ":" +string(self.cfg.endTime.minute), "15:4").Format("3:04 pm");
+  let start = date(string(self.cfg.startTime.hour) + ":" +string(self.cfg.startTime.minute), "15:4").Format("3:04 pm");
+
+  start + " to " + end +" on " +join(map(self.cfg.dayOfWeek, weekdays[string(#)]), ", ")}
+shortDescription: Block or unblock your distractions based on a weekly schedule
+boundPlugin: schedule_breaks
+uiConfig:
+  defaultIcon:
+    materialIcon: calendar_month
+rule:
+  legacyBlockTitleTemplate: Stay blocked during set hours
+  legacyBlockDescriptionTemplate: Schedule times during the week when your distractions are automatically blocked.
+  legacyUnblockTitleTemplate: Unblock during scheduled times
+  legacyUnblockDescriptionTemplate: Schedule times during the week when your distractions automatically unblock.
+  allowedActions:
+    - block_blocklist
+    - unblock_blocklist

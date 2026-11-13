@@ -1,0 +1,32 @@
+expression: |
+  if !data.location.is_in_location {
+    // This will unblock for 15 minutes, which means that your GPS needs to check in
+    // every 15 minutes to ensure that you're still allowed to unblock.
+    now() + duration("15m")
+  } else {
+    false
+  }
+paramSchema:
+  type_input: object
+  properties:
+    location:
+      metadata:
+        locationPicker: {}
+name: Unblock outside Location
+requiredData:
+  location:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:location
+        functionId: location
+        functionParamExpr: '{location: self.cfg.location}'
+        dataSourceName: Unblock outside Location
+shortDescription: Unblock distractions when you're outside of a specific location
+boundPlugin: github.com/digital-carrot-app/plugins:location
+rule:
+  legacyBlockTitleTemplate: ""
+  legacyBlockDescriptionTemplate: ""
+  legacyUnblockTitleTemplate: Unblock outside Location
+  legacyUnblockDescriptionTemplate: Unblock distractions when you're outside of a specific location
+  allowedActions:
+    - unblock_blocklist

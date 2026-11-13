@@ -1,0 +1,46 @@
+expression: |2-
+  		if int(now().Local().Weekday()) in self.cfg.dayOfWeek{
+  			{"is_skip_day": true, "skip_reason": "Day of week"}
+  		} else {
+  			{"is_skip_day": false}
+  		}
+  		
+paramSchema:
+  properties:
+    dayOfWeek:
+      title: Week days
+      description: Select the days of the week where you'd like to take a break
+      type_input: array
+      items:
+        type_input: integer
+        enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+      metadata:
+        uiSuggestions:
+          - name: Sunday
+            value: 0
+          - name: Monday
+            value: 1
+          - name: Tuesday
+            value: 2
+          - name: Wednesday
+            value: 3
+          - name: Thursday
+            value: 4
+          - name: Friday
+            value: 5
+          - name: Saturday
+            value: 6
+        multipleSelection:
+          itemType: integer
+        displayOrder: 1
+      minItems: 1
+name: Weekly rest day
+shortDescription: Skip this goal on a specific day of the week.
+skipDay: {}

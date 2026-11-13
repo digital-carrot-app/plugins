@@ -1,0 +1,30 @@
+expression: data.usage.cumulative >= self.cfg.minutes
+paramSchema:
+  properties:
+    minutes:
+      title: Minutes on Website
+      description: Enter the number of minutes you would like to spent on this website.
+      type_input: integer
+      metadata:
+        unit: minutes
+      default: 30
+    website:
+      title: Website
+      description: Enter the url for the website you want to visit.
+      type_input: string
+name: Time on Website
+requiredData:
+  usage:
+    dataSources:
+      default:
+        pluginId: desktop_web_usage
+        functionId: usage
+        functionParamExpr: '{websites: [self.cfg.website]}'
+        dataSourceName: Time on Website
+instanceNameTemplate: Spend ${self.cfg.minutes} minutes on ${self.cfg.website}
+shortDescription: Spend a certain amount of time on a website that you want to use.
+boundPlugin: desktop_web_usage
+uiConfig:
+  defaultIcon:
+    materialIcon: timer
+goal: {}

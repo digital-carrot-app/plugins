@@ -1,0 +1,14 @@
+expression: data.due_today.due_count == 0
+name: Complete Tasks
+requiredData:
+  due_today:
+    dataSources:
+      default:
+        pluginId: apple_reminders
+        functionId: due_today
+        dataSourceName: Complete Tasks
+instanceNameTemplate: Finish everything on your todo list.
+shortDescription: Don't have any due or overdue items in the Reminders app.
+boundPlugin: apple_reminders
+goal:
+  hideVariablesOverview: true

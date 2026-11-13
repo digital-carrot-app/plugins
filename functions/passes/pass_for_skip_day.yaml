@@ -1,0 +1,18 @@
+expression: |2-
+  		let goal = input?.functionResults?.goal;
+  		let result = goal?.result ?? false;
+  		if goal != nil && goal.status == "Skipped" && result && !("Used a pass" in goal.skipReasons) {
+  			{
+  				"earned_passes": {
+  					"finished-on-skip-day": {
+  						"earned_by": "Completing this goal on a rest day",
+  					},
+  				},
+  			}
+  		} else {
+  			{"earned_passes": {}}
+  		}
+  		
+name: Earn passes on rest days
+shortDescription: Earn a pass when you complete this goal on a rest day.
+passes: {}

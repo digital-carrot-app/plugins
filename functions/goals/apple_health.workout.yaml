@@ -1,0 +1,80 @@
+expression: data.workout.calories >= self.cfg.calories
+paramSchema:
+  properties:
+    activity:
+      title: Activity
+      description: Workout activity such as running, swimming, cycling, etc.
+      type_input: string
+      enum:
+        - ANY
+        - BIKING
+        - YOGA
+        - WALKING
+        - SWIMMING
+        - ELLIPTICAL
+        - HIGH_INTENSITY_INTERVAL_TRAINING
+        - TRADITIONAL_STRENGTH_TRAINING
+        - PILATES
+        - CLIMBING
+        - ROWING
+        - RUNNING
+        - STAIR_CLIMBING
+        - TENNIS
+        - ROWING_MACHINE
+        - DANCING
+      metadata:
+        uiSuggestions:
+          - name: Any Activity
+            value: ANY
+            description: This will add metrics from all of your recorded activities.
+          - name: Biking
+            value: BIKING
+          - name: Dancing
+            value: DANCING
+          - name: Elliptical
+            value: ELLIPTICAL
+          - name: High Intensity Interval Training
+            value: HIGH_INTENSITY_INTERVAL_TRAINING
+          - name: Strength Training
+            value: TRADITIONAL_STRENGTH_TRAINING
+          - name: Pilates
+            value: PILATES
+          - name: Rowing
+            value: ROWING
+          - name: Running
+            value: RUNNING
+          - name: Stair Climbing
+            value: STAIR_CLIMBING
+          - name: Swimming
+            value: SWIMMING
+          - name: Tennis
+            value: TENNIS
+          - name: Walking
+            value: WALKING
+          - name: Yoga
+            value: YOGA
+          - name: Rowing Machine
+            value: ROWING_MACHINE
+          - name: Rock Climbing
+            value: CLIMBING
+      default: ANY
+    calories:
+      title: Calories
+      description: The number calories you would like to burn doing this activity.
+      type_input: integer
+      metadata:
+        unit: calories
+      default: 100
+name: Workout
+requiredData:
+  workout:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: workout
+        functionParamExpr: '{day: 0, activity: self.cfg.activity}'
+        dataSourceName: Workout
+instanceNameTemplate: Burn ${self.cfg.calories} calories by working out (${self.cfg.activity})
+shortDescription: Record a workout using a fitness tracker such as an Apple Watch
+boundPlugin: apple_health
+goal: {}

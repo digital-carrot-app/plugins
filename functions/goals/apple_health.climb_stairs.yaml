@@ -1,0 +1,21 @@
+expression: data.movement.stairs >= self.cfg.stairs
+paramSchema:
+  properties:
+    stairs:
+      title: Stairs
+      description: Number of stairs you would like to climb.
+      type_input: integer
+      default: 10
+name: Stairs
+requiredData:
+  movement:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: movement
+        functionParamExpr: '{day: 0}'
+        dataSourceName: Stairs
+instanceNameTemplate: Climb ${self.cfg.stairs} stairs.
+shortDescription: Climb a certain number of stairs.
+boundPlugin: apple_health
+goal: {}

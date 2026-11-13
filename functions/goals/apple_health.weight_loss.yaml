@@ -1,0 +1,58 @@
+expression: |2-
+  let start = date(self.cfg.start_date);
+  let end = date(self.cfg.target_date);
+  let numDays = floor((end - start).Hours()/24);
+  let amountToLose = (self.cfg.initial_weight - self.cfg.target_weight);
+  let perDay = amountToLose / numDays;
+
+  let target = now().After(end) ? self.cfg.target_weight : self.cfg.initial_weight - (floor((now() - start).Hours()/24) * perDay);
+
+  progressText("Daily goal: %.1f, Current weight: %.1f, Rate: %.1f per week", target, data.body.weight, perDay * 7);
+
+  data.body.weight <= target;
+  							
+paramSchema:
+  type_input: object
+  properties:
+    initial_weight:
+      title: 1. Starting Weight
+      description: How much do you weigh now?
+      type_input: number
+      metadata:
+        unit: kilograms
+    start_date:
+      title: 4. Start Date
+      description: Date to start tracking weight loss.
+      type_input: string
+      metadata:
+        datePicker: {}
+    target_date:
+      title: 3. Target Date
+      description: Date you want to lose weight by.
+      type_input: string
+      metadata:
+        datePicker: {}
+    target_weight:
+      title: 2. Target Weight
+      description: How much would you like to weigh?
+      type_input: number
+      metadata:
+        unit: kilograms
+  required:
+    - target_date
+    - start_date
+    - initial_weight
+    - target_weight
+name: Lose Weight
+requiredData:
+  body:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: body
+        functionParamExpr: '{day: 0}'
+        dataSourceName: Lose Weight
+instanceNameTemplate: Achieve a weight of ${self.cfg.target}_weight.
+shortDescription: Lose a specific amount of weight over time.
+boundPlugin: apple_health
+goal: {}

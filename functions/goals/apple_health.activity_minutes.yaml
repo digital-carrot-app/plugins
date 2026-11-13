@@ -1,0 +1,25 @@
+expression: data.movement.exercise_minutes >= self.cfg.minutes
+paramSchema:
+  properties:
+    minutes:
+      title: Minutes
+      description: Number of minutes you would like to exercise.
+      type_input: integer
+      metadata:
+        unit: minutes
+      default: 30
+name: Exercise Minutes
+requiredData:
+  movement:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: movement
+        functionParamExpr: '{day: 0}'
+        dataSourceName: Exercise Minutes
+instanceNameTemplate: Exercise for ${self.cfg.minutes} minutes
+excludePlatforms:
+  - android
+shortDescription: Exercise for a certain number of minutes.
+boundPlugin: apple_health
+goal: {}

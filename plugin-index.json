@@ -15,5 +15,85 @@
     "oura": {
       "path": "oura"
     }
+  },
+  "functions": {
+    "apple_health.activity_minutes": {
+      "path": "functions/goals/apple_health.activity_minutes"
+    },
+    "apple_health.climb_stairs": {
+      "path": "functions/goals/apple_health.climb_stairs"
+    },
+    "apple_health.mindful_minutes": {
+      "path": "functions/goals/apple_health.mindful_minutes"
+    },
+    "apple_health.walk_steps": {
+      "path": "functions/goals/apple_health.walk_steps"
+    },
+    "apple_health.weight_loss": {
+      "path": "functions/goals/apple_health.weight_loss"
+    },
+    "apple_health.workout": {
+      "path": "functions/goals/apple_health.workout"
+    },
+    "apple_reminders.no_overdue": {
+      "path": "functions/goals/apple_reminders.no_overdue"
+    },
+    "desktop_web_usage.time_on_website": {
+      "path": "functions/goals/desktop_web_usage.time_on_website"
+    },
+    "fitbit.active_calories": {
+      "path": "functions/goals/fitbit.active_calories"
+    },
+    "fitbit.steps": {
+      "path": "functions/goals/fitbit.steps"
+    },
+    "location.block_in_location": {
+      "path": "functions/rules/location.block_in_location"
+    },
+    "location.block_outside_location": {
+      "path": "functions/rules/location.block_outside_location"
+    },
+    "location.time_in_location": {
+      "path": "functions/goals/location.time_in_location"
+    },
+    "location.unblock_in_location": {
+      "path": "functions/rules/location.unblock_in_location"
+    },
+    "location.unblock_outside_location": {
+      "path": "functions/rules/location.unblock_outside_location"
+    },
+    "manual_goal.manual_goal": {
+      "path": "functions/goals/manual_goal.manual_goal"
+    },
+    "manual_goal.time_allowance": {
+      "path": "functions/rules/manual_goal.time_allowance"
+    },
+    "manual_goal.timed_task": {
+      "path": "functions/goals/manual_goal.timed_task"
+    },
+    "oura.steps": {
+      "path": "functions/goals/oura.steps"
+    },
+    "pass_for_double": {
+      "path": "functions/passes/pass_for_double"
+    },
+    "pass_for_skip_day": {
+      "path": "functions/passes/pass_for_skip_day"
+    },
+    "passes_per_month": {
+      "path": "functions/passes/passes_per_month"
+    },
+    "schedule_breaks.single_schedule": {
+      "path": "functions/rules/schedule_breaks.single_schedule"
+    },
+    "skip_day_weekly": {
+      "path": "functions/skip_days/skip_day_weekly"
+    },
+    "skip_day_yearly": {
+      "path": "functions/skip_days/skip_day_yearly"
+    },
+    "todoist.complete_all": {
+      "path": "functions/goals/todoist.complete_all"
+    }
   }
 }

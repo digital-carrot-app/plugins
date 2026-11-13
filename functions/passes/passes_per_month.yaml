@@ -1,0 +1,23 @@
+expression: |2-
+  		if self.cfg.num_passes == 0 {
+  		  {"earned_passes": {}}
+  		} else {
+  		  let numPasses = 0..self.cfg.num_passes-1;
+  		  let month = now().Month();
+  		  let passInfo = {"earned_by": "Monthly pass for " + string(month)};
+  		  let passes = map(numPasses, {[string(#) + "_pass_for_" + string(month), passInfo]});
+
+  		  {"earned_passes": fromPairs(passes)}
+  		}
+  		
+paramSchema:
+  properties:
+    num_passes:
+      title: Passes Per Month
+      description: Number of passes you would like to get each month
+      type_input: integer
+      default: 3
+name: Monthly Passes
+shortDescription: Earn a set number of passes each month.
+passes:
+  resetInterval: monthly

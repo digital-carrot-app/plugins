@@ -1,0 +1,26 @@
+expression: |
+  progressText("DEBUG: steps: %.1f, calories: %.1f, distance: %.1f", data.activity_summary.steps, data.activity_summary.active_calories, data.activity_summary.distance);
+  progressBadge(data.activity_summary.steps, self.cfg.steps);
+  data.activity_summary.steps >= self.cfg.steps
+paramSchema:
+  type_input: object
+  properties:
+    steps:
+      title: Step Goal
+      description: Number of steps you'd like to walk
+      type_input: integer
+      metadata:
+        customUnit: steps
+      default: 2000
+name: Steps
+requiredData:
+  activity_summary:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:oura
+        functionId: activity_summary
+        dataSourceName: Steps
+instanceNameTemplate: Walk ${self.cfg.steps} steps
+shortDescription: Walk a certain number of steps every day.
+boundPlugin: github.com/digital-carrot-app/plugins:oura
+goal: {}

@@ -1,0 +1,32 @@
+expression: |
+  if !data.location.is_in_location {
+    // This will block for 12 hours unless the GPS refreshes to show that
+    // you're in a new location
+    now() + duration("12h")
+  } else {
+    false
+  }
+paramSchema:
+  type_input: object
+  properties:
+    location:
+      metadata:
+        locationPicker: {}
+name: Block outside Location
+requiredData:
+  location:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:location
+        functionId: location
+        functionParamExpr: '{location: self.cfg.location}'
+        dataSourceName: Block outside Location
+shortDescription: Block distractions when you're outside of a specific location
+boundPlugin: github.com/digital-carrot-app/plugins:location
+rule:
+  legacyBlockTitleTemplate: Block outside Location
+  legacyBlockDescriptionTemplate: Block distractions when you're outside of a specific location
+  legacyUnblockTitleTemplate: ""
+  legacyUnblockDescriptionTemplate: ""
+  allowedActions:
+    - block_blocklist

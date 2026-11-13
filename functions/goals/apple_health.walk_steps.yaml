@@ -1,0 +1,21 @@
+expression: data.movement.steps >= self.cfg.steps
+paramSchema:
+  properties:
+    steps:
+      title: Steps
+      description: The number of steps you'd like to walk.
+      type_input: integer
+      default: 2000
+name: Steps
+requiredData:
+  movement:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: movement
+        functionParamExpr: '{day: 0}'
+        dataSourceName: Steps
+instanceNameTemplate: Walk ${self.cfg.steps} steps
+shortDescription: Walk a certain number of steps every day.
+boundPlugin: apple_health
+goal: {}

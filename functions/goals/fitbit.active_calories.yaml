@@ -1,0 +1,23 @@
+expression: data.activity_summary.active_calories >= self.cfg.calories
+paramSchema:
+  type_input: object
+  properties:
+    calories:
+      title: Calories Burned Goal
+      description: Number of calories you'd like to burn
+      type_input: number
+      metadata:
+        unit: calories
+      default: 300
+name: Active Calories
+requiredData:
+  activity_summary:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:fitbit
+        functionId: activity_summary
+        dataSourceName: Active Calories
+instanceNameTemplate: Burn ${self.cfg.calories} calories
+shortDescription: Burn a certain number of calories from light physical activity every day.
+boundPlugin: github.com/digital-carrot-app/plugins:fitbit
+goal: {}

@@ -1,0 +1,23 @@
+expression: data.activity_summary.steps >= self.cfg.steps
+paramSchema:
+  type_input: object
+  properties:
+    steps:
+      title: Step Goal
+      description: Number of steps you'd like to walk
+      type_input: integer
+      metadata:
+        customUnit: steps
+      default: 2000
+name: Steps
+requiredData:
+  activity_summary:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:fitbit
+        functionId: activity_summary
+        dataSourceName: Steps
+instanceNameTemplate: Walk ${self.cfg.steps} steps
+shortDescription: Walk a certain number of steps every day.
+boundPlugin: github.com/digital-carrot-app/plugins:fitbit
+goal: {}

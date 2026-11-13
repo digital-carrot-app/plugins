@@ -1,0 +1,19 @@
+expression: |2-
+  		let goal = input.functionResults.goal;
+  		let progress = input?.functionResults?.progress?.badge?.percentage;
+  		let result = goal?.result ?? false;
+  		if result && progress != nil && progress.numerator >= progress.denominator * 2 {
+  			{
+  				"earned_passes": {
+  					"2x-goal-multiplier": {
+  						"earned_by": "Completing double this goal on " + now().Local().Format("Jan 1, 2006"),
+  					},
+  				},
+  			}
+  		} else {
+  			{"earned_passes": {}}
+  		}
+  		
+name: Earn passes for doubling your goal
+shortDescription: Earn a pass when you achieve double your daily goal.
+passes: {}

@@ -1,0 +1,23 @@
+expression: data.mind.mindfulness >= self.cfg.minutes
+paramSchema:
+  properties:
+    minutes:
+      title: Minutes
+      description: The number of minutes you'd like to meditate.
+      type_input: integer
+      metadata:
+        unit: minutes
+      default: 15
+name: Meditation
+requiredData:
+  mind:
+    dataSources:
+      default:
+        pluginId: apple_health
+        functionId: mind
+        functionParamExpr: '{day: 0}'
+        dataSourceName: Meditation
+instanceNameTemplate: Meditate for ${self.cfg.minutes} minutes
+shortDescription: Meditate for a certain number of minutes
+boundPlugin: apple_health
+goal: {}

@@ -1,0 +1,27 @@
+expression: data.single_task.completed
+name: Daily Task
+requiredData:
+  single_task:
+    dataSources:
+      default:
+        pluginId: manual_goal
+        functionId: single_task
+        createUnique: true
+        dataSourceName: Daily Task
+conditionWidgets:
+  rightBox:
+    id: manual_goal_toggle
+    plugin: manual_goal
+    function: |2-
+      										{
+      											data_source_id: self.instance.linkedData["single_task"].dataSourceId,
+      											show_title: false,
+      											is_completed: data.single_task.completed,
+      										}
+      										
+shortDescription: A single task that you have to manually check off every day.
+boundPlugin: manual_goal
+uiConfig:
+  defaultIcon:
+    materialIcon: task_alt
+goal: {}

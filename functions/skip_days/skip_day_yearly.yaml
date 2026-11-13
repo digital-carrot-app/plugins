@@ -1,0 +1,22 @@
+expression: |2-
+  		let today = now().Local().Format("1-2");
+  		if one(self.cfg.days, {string(.month) + "-" + string(.day) == today}) {
+  			{"is_skip_day": true, "skip_reason": "Day of year"}
+  		} else {
+  			{"is_skip_day": false}
+  		}
+  		
+paramSchema:
+  properties:
+    days:
+      type_input: array
+      items:
+        properties:
+          day:
+            type_input: integer
+          month:
+            type_input: integer
+      minItems: 1
+name: Skip Day
+shortDescription: Skip this goal on specific days of the year.
+skipDay: {}

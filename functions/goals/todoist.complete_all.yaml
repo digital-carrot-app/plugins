@@ -1,0 +1,38 @@
+expression: data.tasks.pending_tasks_count == 0
+paramSchema:
+  type_input: object
+  properties:
+    query:
+      title: Task Filter
+      description: Enter a valid Todoist filter query
+      type_input: string
+      metadata:
+        uiSuggestions:
+          - name: All Unchecked Tasks
+            value: all
+          - name: Today
+            value: today
+          - name: Overdue
+            value: overdue
+          - name: Today or Overdue
+            value: overdue | today
+          - name: Inbox
+            value: '#Inbox'
+          - name: Priority 1
+            value: p1
+      default: all
+name: Finish Tasks
+requiredData:
+  tasks:
+    dataSources:
+      default:
+        pluginId: github.com/digital-carrot-app/plugins:todoist
+        functionId: tasks
+        functionParamExpr: self.cfg
+        dataSourceName: Finish Tasks
+instanceNameTemplate: |-
+  ${let task = find(self.instance.params.schema.properties.query.metadata.uiSuggestions, #.value==self.cfg.query)?.name ?? self.cfg.query; "Finish all your tasks. Filter: " + task
+  }
+shortDescription: Finish all of the tasks in a list based on a Todoist filter.
+boundPlugin: github.com/digital-carrot-app/plugins:todoist
+goal: {}

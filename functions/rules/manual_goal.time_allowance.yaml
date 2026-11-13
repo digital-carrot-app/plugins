@@ -1,0 +1,90 @@
+expression: |2
+  let last_started = data.time_tracker.last_started ?? "";
+  let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();
+  let remainder = self.cfg.minutes - data.time_tracker.total_time - since_start;
+
+  remainder > 0 ? progressBadge(
+  	data.time_tracker.total_time, self.cfg.minutes,
+  		{startTime: data.time_tracker.last_started, secondsPerUpdate: 60, unit: "minutes"},
+  	) : nil;
+
+  if data.time_tracker.current_task != "" && remainder > 0 {
+  	now() + duration(string(remainder)+"m")
+  } else {
+  	false
+  }
+paramSchema:
+  type_input: object
+  properties:
+    minutes:
+      title: Minutes per Day
+      description: How many minutes per day do you want to be able to unblock your distractions?
+      type_input: integer
+      metadata:
+        unit: minutes
+name: Timed Unblock
+requiredData:
+  time_tracker:
+    dataSources:
+      default:
+        pluginId: manual_goal
+        functionId: time_tracker
+        functionParamExpr: '{tasks: ["Unblock distractions"], max_per_timer: self.cfg.minutes}'
+        createUnique: true
+        dataSourceName: Timed Unblock
+instanceNameTemplate: Allowed to unblock for ${self.cfg.minutes} minutes per day.
+conditionWidgets:
+  leftBox:
+    id: timer
+    plugin: manual_goal
+    function: |2-
+      										{
+      											current_task: data.time_tracker?.current_task ?? "",
+      											last_started: data.time_tracker?.last_started ?? "",
+      											target_minutes: self.cfg.minutes,
+      											total_time: data.time_tracker?.total_time ?? 0,
+      										}
+      										
+  rightBox:
+    id: timer_toggle
+    plugin: manual_goal
+    function: |2-
+      										{
+      											data_source_id: self.instance.linkedData["time_tracker"].dataSourceId,
+      											toggle_task_name: "Unblock distractions",
+      											current_task: data.time_tracker?.current_task ?? "",
+      										}
+      										
+shortDescription: Lets you unblock this list for a set number of minutes per day.
+boundPlugin: manual_goal
+uiConfig:
+  defaultIcon:
+    materialIcon: hourglass_full
+  overviewWidgets:
+    toggle:
+      id: timer_toggle
+      plugin: manual_goal
+      function: |2-
+        											{
+        												data_source_id: self.instance.linkedData["time_tracker"].dataSourceId,
+        												toggle_task_name: "Unblock distractions",
+        												current_task: data.time_tracker?.current_task ?? "",
+        											}
+        											
+  controlWidget:
+    id: timer_toggle
+    plugin: manual_goal
+    function: |2-
+      										{
+      											data_source_id: self.instance.linkedData["time_tracker"].dataSourceId,
+      											toggle_task_name: "Unblock distractions",
+      											current_task: data.time_tracker?.current_task ?? "",
+      										}
+      										
+rule:
+  legacyBlockTitleTemplate: ""
+  legacyBlockDescriptionTemplate: ""
+  legacyUnblockTitleTemplate: Unblock for a limited time each day
+  legacyUnblockDescriptionTemplate: Allow yourself to unblock all of your distractions for a set number of minutes each day.
+  allowedActions:
+    - unblock_blocklist
