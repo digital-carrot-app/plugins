@@ -81,6 +81,24 @@ uiConfig:
       											current_task: data.time_tracker?.current_task ?? "",
       										}
       										
+quickstartMigration:
+  pluginId: manual_goal
+  qsId: time_allowance
+  expressionTemplate: |2
+    let last_started = $qs.data.time_tracker.last_started ?? "";
+    let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();
+    let remainder = $qs.cfg.minutes - $qs.data.time_tracker.total_time - since_start;
+
+    remainder > 0 ? progressBadge(
+    	$qs.data.time_tracker.total_time, $qs.cfg.minutes,
+    		{startTime: $qs.data.time_tracker.last_started, secondsPerUpdate: 60, unit: "minutes"},
+    	) : nil;
+
+    if $qs.data.time_tracker.current_task != "" && remainder > 0 {
+    	now() + duration(string(remainder)+"m")
+    } else {
+    	false
+    }
 rule:
   legacyBlockTitleTemplate: ""
   legacyBlockDescriptionTemplate: ""

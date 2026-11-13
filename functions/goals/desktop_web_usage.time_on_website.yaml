@@ -27,4 +27,8 @@ boundPlugin: desktop_web_usage
 uiConfig:
   defaultIcon:
     materialIcon: timer
+quickstartMigration:
+  pluginId: desktop_web_usage
+  qsId: time_on_website
+  expressionTemplate: $qs.data.usage.cumulative >= $qs.cfg.minutes
 goal: {}

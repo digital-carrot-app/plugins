@@ -35,4 +35,8 @@ instanceNameTemplate: |-
   }
 shortDescription: Finish all of the tasks in a list based on a Todoist filter.
 boundPlugin: github.com/digital-carrot-app/plugins:todoist
+quickstartMigration:
+  pluginId: github.com/digital-carrot-app/plugins:todoist
+  qsId: complete_all
+  expressionTemplate: $qs.data.tasks.pending_tasks_count == 0
 goal: {}

@@ -86,4 +86,16 @@ uiConfig:
       											current_task: data.time_tracker?.current_task ?? "",
       										}
       										
+quickstartMigration:
+  pluginId: manual_goal
+  qsId: timed_task
+  expressionTemplate: |2-
+    let task = $qs.data.time_tracker.current_task == "" ? "" : "Current timer: " + $qs.data.time_tracker.current_task;
+    progressBadge(
+    	$qs.data.time_tracker.total_time, $qs.cfg.minutes,
+    	{startTime: $qs.data.time_tracker.last_started, secondsPerUpdate: 60, unit: "minutes"},
+    );
+    progressText(task);
+    $qs.data.time_tracker.total_time >= $qs.cfg.minutes
+    							
 goal: {}

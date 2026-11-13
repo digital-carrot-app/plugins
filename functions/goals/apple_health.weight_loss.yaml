@@ -55,4 +55,20 @@ requiredData:
 instanceNameTemplate: Achieve a weight of ${self.cfg.target}_weight.
 shortDescription: Lose a specific amount of weight over time.
 boundPlugin: apple_health
+quickstartMigration:
+  pluginId: apple_health
+  qsId: weight_loss
+  expressionTemplate: |2-
+    let start = date("$qs.cfg.start_date");
+    let end = date("$qs.cfg.target_date");
+    let numDays = floor((end - start).Hours()/24);
+    let amountToLose = ($qs.cfg.initial_weight - $qs.cfg.target_weight);
+    let perDay = amountToLose / numDays;
+
+    let target = now().After(end) ? $qs.cfg.target_weight : $qs.cfg.initial_weight - (floor((now() - start).Hours()/24) * perDay);
+
+    progressText("Daily goal: %.1f, Current weight: %.1f, Rate: %.1f per week", target, $qs.data.body.weight, perDay * 7);
+
+    $qs.data.body.weight <= target;
+    							
 goal: {}

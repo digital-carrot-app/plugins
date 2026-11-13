@@ -23,4 +23,11 @@ requiredData:
 instanceNameTemplate: Walk ${self.cfg.steps} steps
 shortDescription: Walk a certain number of steps every day.
 boundPlugin: github.com/digital-carrot-app/plugins:oura
+quickstartMigration:
+  pluginId: github.com/digital-carrot-app/plugins:oura
+  qsId: steps
+  expressionTemplate: |
+    progressText("DEBUG: steps: %.1f, calories: %.1f, distance: %.1f", $qs.data.activity_summary.steps, $qs.data.activity_summary.active_calories, $qs.data.activity_summary.distance);
+    progressBadge($qs.data.activity_summary.steps, $qs.cfg.steps);
+    $qs.data.activity_summary.steps >= $qs.cfg.steps
 goal: {}

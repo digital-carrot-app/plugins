@@ -20,4 +20,8 @@ requiredData:
 instanceNameTemplate: Walk ${self.cfg.steps} steps
 shortDescription: Walk a certain number of steps every day.
 boundPlugin: github.com/digital-carrot-app/plugins:fitbit
+quickstartMigration:
+  pluginId: github.com/digital-carrot-app/plugins:fitbit
+  qsId: steps
+  expressionTemplate: $qs.data.activity_summary.steps >= $qs.cfg.steps
 goal: {}

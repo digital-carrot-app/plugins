@@ -102,6 +102,19 @@ boundPlugin: schedule_breaks
 uiConfig:
   defaultIcon:
     materialIcon: calendar_month
+quickstartMigration:
+  pluginId: schedule_breaks
+  qsId: single_schedule
+  expressionTemplate: |2-
+    								if $qs.data.single_schedule.version == 1 {
+    									{
+    										"is_active": $qs.data.single_schedule.inSchedule,
+    										"activate_at": $qs.data.single_schedule.currentStartsAt,
+    										"deactivate_at": $qs.data.single_schedule.currentEndsAt,
+    									}
+    								} else {
+    									$qs.data.single_schedule.currentEndsAt == "" ? false : $qs.data.single_schedule.currentEndsAt
+    								}
 rule:
   legacyBlockTitleTemplate: Stay blocked during set hours
   legacyBlockDescriptionTemplate: Schedule times during the week when your distractions are automatically blocked.

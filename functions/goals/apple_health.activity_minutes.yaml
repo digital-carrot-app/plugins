@@ -22,4 +22,8 @@ excludePlatforms:
   - android
 shortDescription: Exercise for a certain number of minutes.
 boundPlugin: apple_health
+quickstartMigration:
+  pluginId: apple_health
+  qsId: activity_minutes
+  expressionTemplate: $qs.data.movement.exercise_minutes >= $qs.cfg.minutes
 goal: {}

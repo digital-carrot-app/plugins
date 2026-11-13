@@ -18,4 +18,8 @@ requiredData:
 instanceNameTemplate: Climb ${self.cfg.stairs} stairs.
 shortDescription: Climb a certain number of stairs.
 boundPlugin: apple_health
+quickstartMigration:
+  pluginId: apple_health
+  qsId: climb_stairs
+  expressionTemplate: $qs.data.movement.stairs >= $qs.cfg.stairs
 goal: {}

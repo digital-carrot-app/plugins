@@ -20,4 +20,8 @@ requiredData:
 instanceNameTemplate: Meditate for ${self.cfg.minutes} minutes
 shortDescription: Meditate for a certain number of minutes
 boundPlugin: apple_health
+quickstartMigration:
+  pluginId: apple_health
+  qsId: mindful_minutes
+  expressionTemplate: $qs.data.mind.mindfulness >= $qs.cfg.minutes
 goal: {}

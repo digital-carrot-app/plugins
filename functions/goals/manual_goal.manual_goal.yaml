@@ -24,4 +24,8 @@ boundPlugin: manual_goal
 uiConfig:
   defaultIcon:
     materialIcon: task_alt
+quickstartMigration:
+  pluginId: manual_goal
+  qsId: manual_goal
+  expressionTemplate: $qs.data.single_task.completed
 goal: {}

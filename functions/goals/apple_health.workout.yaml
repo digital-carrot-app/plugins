@@ -77,4 +77,8 @@ requiredData:
 instanceNameTemplate: Burn ${self.cfg.calories} calories by working out (${self.cfg.activity})
 shortDescription: Record a workout using a fitness tracker such as an Apple Watch
 boundPlugin: apple_health
+quickstartMigration:
+  pluginId: apple_health
+  qsId: workout
+  expressionTemplate: $qs.data.workout.calories >= $qs.cfg.calories
 goal: {}

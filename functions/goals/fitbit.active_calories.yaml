@@ -20,4 +20,8 @@ requiredData:
 instanceNameTemplate: Burn ${self.cfg.calories} calories
 shortDescription: Burn a certain number of calories from light physical activity every day.
 boundPlugin: github.com/digital-carrot-app/plugins:fitbit
+quickstartMigration:
+  pluginId: github.com/digital-carrot-app/plugins:fitbit
+  qsId: active_calories
+  expressionTemplate: $qs.data.activity_summary.active_calories >= $qs.cfg.calories
 goal: {}

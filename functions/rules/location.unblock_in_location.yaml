@@ -23,6 +23,17 @@ requiredData:
         dataSourceName: Unblock in Location
 shortDescription: Unblock distractions when you're in a specific location
 boundPlugin: github.com/digital-carrot-app/plugins:location
+quickstartMigration:
+  pluginId: github.com/digital-carrot-app/plugins:location
+  qsId: unblock_in_location
+  expressionTemplate: |
+    if $qs.data.location.is_in_location {
+      // This will unblock for 15 minutes, which means that your GPS needs to check in
+      // every 15 minutes to ensure that you're still allowed to unblock.
+      now() + duration("15m")
+    } else {
+      false
+    }
 rule:
   legacyBlockTitleTemplate: ""
   legacyBlockDescriptionTemplate: ""
