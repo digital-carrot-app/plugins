@@ -74,6 +74,6 @@ quickstartMigration:
 goal: {}
 uiConfig:
   defaultIcon:
-    materialIcon: monitor_weight_loss
+    materialIcon: monitor_weight
   defaultColor:
     color: indigo

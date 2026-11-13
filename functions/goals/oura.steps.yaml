@@ -33,6 +33,6 @@ quickstartMigration:
 goal: {}
 uiConfig:
   defaultIcon:
-    materialIcon: steps
+    materialIcon: directions_walk
   defaultColor:
     color: green

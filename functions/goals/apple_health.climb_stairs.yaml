@@ -25,6 +25,6 @@ quickstartMigration:
 goal: {}
 uiConfig:
   defaultIcon:
-    materialIcon: floor
+    materialIcon: stairs
   defaultColor:
     color: green
