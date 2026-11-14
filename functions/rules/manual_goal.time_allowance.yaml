@@ -26,15 +26,21 @@ paramSchema:
       type_input: array
       items:
         type_input: object
+        title: Earn additional minutes
         properties:
           earn_minutes:
+            type_input: number
             title: Number of minutes to earn
-            type_input: number
+            metadata:
+              display_order: 1
           for_each:
-            title: For every
             type_input: number
+            title: For every
+            metadata:
+              display_order: 2
           variable:
             metadata:
+              display_order: 3
               variable_picker:
                 required_data_id: earn_minutes
 name: Timed Unblock
