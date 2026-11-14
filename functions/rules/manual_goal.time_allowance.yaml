@@ -23,9 +23,20 @@ paramSchema:
       metadata:
         unit: minutes
     select_var:
-      metadata:
-        variable_picker:
-          required_data_id: earn_minutes
+      type_input: array
+      items:
+        type_input: object
+        properties:
+          earn_minutes:
+            title: Number of minutes to earn
+            type_input: number
+          for_each:
+            title: For every
+            type_input: number
+          variable:
+            metadata:
+              variable_picker:
+                required_data_id: earn_minutes
 name: Timed Unblock
 requiredData:
   earn_minutes:
