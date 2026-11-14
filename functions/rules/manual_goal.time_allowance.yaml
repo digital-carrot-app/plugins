@@ -24,9 +24,10 @@ paramSchema:
         unit: minutes
     select_var:
       type_input: array
+      title: Additional Minutes
+      description: Earn additional minutes for every step, calorie burned, and more
       items:
         type_input: object
-        title: Earn additional minutes
         properties:
           earn_minutes:
             type_input: number
