@@ -2,6 +2,7 @@ expression: |2
   let last_started = data.time_tracker.last_started ?? "";
   let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();
   let remainder = self.cfg.minutes - data.time_tracker.total_time - since_start;
+  let earned_minutes = sum(self.cfg.select_var, (.earn_minutes / .for_each) * data[.variable.variable_name]);
 
   remainder > 0 ? progressBadge(
   	data.time_tracker.total_time, self.cfg.minutes,
@@ -22,10 +23,13 @@ paramSchema:
       type_input: integer
       metadata:
         unit: minutes
+        display_order: 1
     select_var:
       type_input: array
       title: Additional Minutes
       description: Earn additional minutes for every step, calorie burned, and more
+      metadata:
+        display_order: 2
       items:
         type_input: object
         properties:
@@ -52,6 +56,7 @@ requiredData:
     expected_output_schema:
       type_input: number
     allow_custom_variable:
+    allow_multiple_select: true
   time_tracker:
     dataSources:
       default:
