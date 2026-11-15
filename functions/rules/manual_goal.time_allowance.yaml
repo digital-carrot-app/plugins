@@ -35,6 +35,9 @@ paramSchema:
         display_order: 2
       items:
         type_input: object
+        metadata:
+          object_summary:
+            title_template: "Earn ${earn_minutes} for every ${for_each} ${variable.variable_name}"
         properties:
           earn_minutes:
             type_input: number
