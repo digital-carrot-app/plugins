@@ -1,11 +1,14 @@
 expression: |2
   let last_started = data.time_tracker.last_started ?? "";
   let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();
-  let remainder = self.cfg.minutes - data.time_tracker.total_time - since_start;
   let earned_minutes = sum(self.cfg.select_var, .for_each == 0 ? 0 : ((.earn_minutes ?? 0) / (.for_each ?? 0)) * data[.variable.variable_name]);
 
+  let total_minutes = earned_minutes + self.cfg.minutes;
+
+  let remainder = total_minutes - data.time_tracker.total_time - since_start;
+
   remainder > 0 ? progressBadge(
-  	data.time_tracker.total_time, self.cfg.minutes,
+  	data.time_tracker.total_time, total_minutes,
   		{startTime: data.time_tracker.last_started, secondsPerUpdate: 60, unit: "minutes"},
   	) : nil;
 
