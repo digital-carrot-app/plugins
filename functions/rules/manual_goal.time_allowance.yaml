@@ -39,6 +39,7 @@ paramSchema:
       type_input: array
       title: Additional Minutes
       description: Earn additional minutes for every step, calorie burned, and more
+      default: []
       metadata:
         display_order: 2
       items:
