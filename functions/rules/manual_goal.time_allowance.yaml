@@ -2,15 +2,23 @@ expression: |2
   let last_started = data.time_tracker.last_started ?? "";
   let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();
   let earned_minutes = sum(self.cfg.select_var, .for_each == 0 ? 0 : ((.earn_minutes ?? 0) / (.for_each ?? 0)) * data[.variable.variable_name]);
-
   let total_minutes = earned_minutes + self.cfg.minutes;
+
+  earned_minutes > 0 ? setHook({
+    callPluginApi: {
+      function: "setTimerLimit",
+      plugin: "manual_goal",
+      instanceId: self.instance.linkedData["time_tracker"].dataSourceId,
+      args: {minutes: total_minutes},
+    },
+  }) : nil;
 
   let remainder = total_minutes - data.time_tracker.total_time - since_start;
 
-  remainder > 0 ? progressBadge(
+  progressBadge(
   	data.time_tracker.total_time, total_minutes,
   		{startTime: data.time_tracker.last_started, secondsPerUpdate: 60, unit: "minutes"},
-  	) : nil;
+  	);
 
   if data.time_tracker.current_task != "" && remainder > 0 {
   	now() + duration(string(remainder)+"m")
