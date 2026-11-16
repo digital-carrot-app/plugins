@@ -12,7 +12,12 @@ expression: |2-
   		} else {
   			{"earned_passes": {}}
   		}
-  		
+
 name: Earn passes on rest days
 shortDescription: Earn a pass when you complete this goal on a rest day.
 passes: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: bedtime
+  defaultColor:
+    color: gold

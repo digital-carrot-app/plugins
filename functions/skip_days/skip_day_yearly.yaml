@@ -5,7 +5,7 @@ expression: |2-
   		} else {
   			{"is_skip_day": false}
   		}
-  		
+
 paramSchema:
   properties:
     days:
@@ -20,3 +20,8 @@ paramSchema:
 name: Skip Day
 shortDescription: Skip this goal on specific days of the year.
 skipDay: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: calendar_view_month
+  defaultColor:
+    color: green

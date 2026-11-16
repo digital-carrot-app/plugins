@@ -9,7 +9,7 @@ expression: |2-
 
   		  {"earned_passes": fromPairs(passes)}
   		}
-  		
+
 paramSchema:
   properties:
     num_passes:
@@ -21,3 +21,8 @@ name: Monthly Passes
 shortDescription: Earn a set number of passes each month.
 passes:
   resetInterval: monthly
+uiConfig:
+  defaultIcon:
+    materialIcon: calendar_month
+  defaultColor:
+    color: gold

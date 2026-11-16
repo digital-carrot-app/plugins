@@ -13,7 +13,12 @@ expression: |2-
   		} else {
   			{"earned_passes": {}}
   		}
-  		
+
 name: Earn passes for doubling your goal
 shortDescription: Earn a pass when you achieve double your daily goal.
 passes: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: keyboard_double_arrow_up
+  defaultColor:
+    color: gold

@@ -4,7 +4,7 @@ expression: |2-
   		} else {
   			{"is_skip_day": false}
   		}
-  		
+
 paramSchema:
   properties:
     dayOfWeek:
@@ -44,3 +44,8 @@ paramSchema:
 name: Weekly rest day
 shortDescription: Skip this goal on a specific day of the week.
 skipDay: {}
+uiConfig:
+  defaultIcon:
+    materialIcon: calendar_view_week
+  defaultColor:
+    color: green
