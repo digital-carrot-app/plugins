@@ -81,6 +81,7 @@ quickstartMigration:
   pluginId: apple_health
   qsId: workout
   expressionTemplate: $qs.data.workout.calories >= $qs.cfg.calories
+  funcId: workout
 goal: {}
 uiConfig:
   defaultIcon:

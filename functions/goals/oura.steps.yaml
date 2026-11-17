@@ -30,6 +30,7 @@ quickstartMigration:
     progressText("DEBUG: steps: %.1f, calories: %.1f, distance: %.1f", $qs.data.activity_summary.steps, $qs.data.activity_summary.active_calories, $qs.data.activity_summary.distance);
     progressBadge($qs.data.activity_summary.steps, $qs.cfg.steps);
     $qs.data.activity_summary.steps >= $qs.cfg.steps
+  funcId: activity_summary
 goal: {}
 uiConfig:
   defaultIcon:

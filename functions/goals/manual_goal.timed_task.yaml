@@ -68,6 +68,7 @@ uiConfig:
 quickstartMigration:
   pluginId: manual_goal
   qsId: timed_task
+  funcId: time_tracker
   expressionTemplate: |2-
     let task = $qs.data.time_tracker.current_task == "" ? "" : "Current timer: " + $qs.data.time_tracker.current_task;
     progressBadge(

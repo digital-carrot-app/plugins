@@ -30,6 +30,7 @@ quickstartMigration:
   pluginId: github.com/digital-carrot-app/plugins:location
   qsId: time_in_location
   expressionTemplate: $qs.data.location.time_in_location >= $qs.cfg.time_to_spend
+  funcId: location
 goal: {}
 uiConfig:
   defaultIcon:

@@ -24,6 +24,7 @@ quickstartMigration:
   pluginId: apple_health
   qsId: mindful_minutes
   expressionTemplate: $qs.data.mind.mindfulness >= $qs.cfg.minutes
+  funcId: mindfulness
 goal: {}
 isDeprecated: true
 uiConfig:

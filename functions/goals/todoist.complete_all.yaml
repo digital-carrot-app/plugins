@@ -39,6 +39,7 @@ quickstartMigration:
   pluginId: github.com/digital-carrot-app/plugins:todoist
   qsId: complete_all
   expressionTemplate: $qs.data.tasks.pending_tasks_count == 0
+  funcId: tasks
 goal: {}
 uiConfig:
   defaultIcon:

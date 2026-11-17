@@ -24,5 +24,6 @@ quickstartMigration:
   pluginId: github.com/digital-carrot-app/plugins:fitbit
   qsId: active_calories
   expressionTemplate: $qs.data.activity_summary.active_calories >= $qs.cfg.calories
+  funcId: activity_summary
 goal: {}
 isDeprecated: true

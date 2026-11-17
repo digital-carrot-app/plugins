@@ -14,6 +14,7 @@ quickstartMigration:
   pluginId: apple_reminders
   qsId: no_overdue
   expressionTemplate: $qs.data.due_today.due_count == 0
+  funcId: due_today
 goal:
   hideVariablesOverview: true
 uiConfig:

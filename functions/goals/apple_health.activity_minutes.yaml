@@ -26,6 +26,7 @@ quickstartMigration:
   pluginId: apple_health
   qsId: activity_minutes
   expressionTemplate: $qs.data.movement.exercise_minutes >= $qs.cfg.minutes
+  funcId: movement
 goal: {}
 uiConfig:
   defaultIcon:

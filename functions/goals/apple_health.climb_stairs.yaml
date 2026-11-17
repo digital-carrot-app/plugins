@@ -22,6 +22,7 @@ quickstartMigration:
   pluginId: apple_health
   qsId: climb_stairs
   expressionTemplate: $qs.data.movement.stairs >= $qs.cfg.stairs
+  funcId: movement
 goal: {}
 uiConfig:
   defaultIcon:

@@ -106,6 +106,7 @@ uiConfig:
 quickstartMigration:
   pluginId: manual_goal
   qsId: time_allowance
+  funcId: time_tracker
   expressionTemplate: |2
     let last_started = $qs.data.time_tracker.last_started ?? "";
     let since_start = last_started == "" ? 0 : (now() - date(last_started)).Minutes();

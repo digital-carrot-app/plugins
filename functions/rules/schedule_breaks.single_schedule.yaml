@@ -107,6 +107,7 @@ uiConfig:
 quickstartMigration:
   pluginId: schedule_breaks
   qsId: single_schedule
+  funcId: single_schedule
   expressionTemplate: |2-
     								if $qs.data.single_schedule.version == 1 {
     									{

@@ -27,6 +27,7 @@ boundPlugin: github.com/digital-carrot-app/plugins:location
 quickstartMigration:
   pluginId: github.com/digital-carrot-app/plugins:location
   qsId: unblock_outside_location
+  funcId: location
   expressionTemplate: |
     if !$qs.data.location.is_in_location {
       // This will unblock for 15 minutes, which means that your GPS needs to check in

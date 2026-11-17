@@ -31,4 +31,5 @@ quickstartMigration:
   pluginId: manual_goal
   qsId: manual_goal
   expressionTemplate: $qs.data.single_task.completed
+  funcId: single_task
 goal: {}

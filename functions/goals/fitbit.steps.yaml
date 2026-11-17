@@ -24,5 +24,6 @@ quickstartMigration:
   pluginId: github.com/digital-carrot-app/plugins:fitbit
   qsId: steps
   expressionTemplate: $qs.data.activity_summary.steps >= $qs.cfg.steps
+  funcId: activity_summary
 goal: {}
 isDeprecated: true

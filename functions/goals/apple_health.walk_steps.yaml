@@ -22,6 +22,7 @@ quickstartMigration:
   pluginId: apple_health
   qsId: walk_steps
   expressionTemplate: $qs.data.movement.steps >= $qs.cfg.steps
+  funcId: movement
 goal: {}
 uiConfig:
   defaultIcon:

@@ -58,6 +58,7 @@ boundPlugin: apple_health
 quickstartMigration:
   pluginId: apple_health
   qsId: weight_loss
+  funcId: body
   expressionTemplate: |2-
     let start = date("$qs.cfg.start_date");
     let end = date("$qs.cfg.target_date");
